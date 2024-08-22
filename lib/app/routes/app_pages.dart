@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
+import 'package:my_blog_app/app/modules/create_post/bindings/create_post_binding.dart';
+import 'package:my_blog_app/app/modules/create_post/views/create_post_view.dart';
 
 import '../modules/auth/bindings/bindings.dart';
 import '../modules/auth/views/views.dart';
 import '../modules/home/bindings/bindings.dart';
-import '../modules/home/views/create_post.dart';
 import '../modules/home/views/get_all_posts.dart';
 import '../modules/home/views/views.dart';
 import '../modules/onboarding/bindings/bindings.dart';
@@ -68,16 +69,16 @@ class AppPages {
     GetPage(
       name: _Paths.CREATEPOST,
       page: () => CreatePostView(),
-      binding: HomeBinding(),
+      binding: CreatePostBinding(),
     ),
-    GetPage(
-      name: _Paths.GETALLPOST,
-      page: () => PostListView(),
-      binding: HomeBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.GETALLPOST,
+    //   page: () => PostListView(),
+    //   binding: HomeBinding(),
+    // ),
     GetPage(
       name: _Paths.PROFILE,
-      page: () => const ProfileView(),
+      page: () =>  ProfileView(),
       binding: ProfileBinding(),
     ),
   ];

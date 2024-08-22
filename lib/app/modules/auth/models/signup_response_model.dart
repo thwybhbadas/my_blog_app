@@ -1,10 +1,10 @@
-class SignupResponsModel { 
+class SignupResponseModel { 
   Data? data; 
   Null? message; 
  
-  SignupResponsModel({this.data, this.message}); 
+  SignupResponseModel({this.data, this.message}); 
  
-  SignupResponsModel.fromJson(Map<String, dynamic> json) { 
+  SignupResponseModel.fromJson(Map<String, dynamic> json) { 
     data = json['data'] != null ?  Data.fromJson(json['data']) : null; 
     message = json['message']; 
   } 

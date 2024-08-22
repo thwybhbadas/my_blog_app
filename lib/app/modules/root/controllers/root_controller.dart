@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_blog_app/app/modules/home/views/create_post.dart';
+import 'package:my_blog_app/app/modules/create_post/views/create_post_view.dart';
 import 'package:my_blog_app/app/modules/home/views/views.dart';
 import 'package:my_blog_app/app/modules/profile/views/account_view.dart';
-import 'package:my_blog_app/app/modules/profile/views/profile_view.dart';
 
 class RootController extends GetxController {
   final RxInt _selectedIndex = 0.obs;

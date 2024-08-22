@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_blog_app/app/constants/conatans.dart';
+import 'package:my_blog_app/app/modules/profile/controllers/account_controller.dart';
 import 'package:my_blog_app/app/modules/profile/controllers/profile_controller.dart';
 import 'package:my_blog_app/app/routes/app_pages.dart';
 import '../widgets/account_link_widget.dart';
 
-class AccountView extends GetView<ProfileController> {
+class AccountView extends GetView<AccountController> {
   const AccountView({super.key});
 
   @override
@@ -98,8 +99,7 @@ class AccountView extends GetView<ProfileController> {
                     icon: Icon(Icons.logout,  color: AppColors.primaryColore,),
                     text: Text("Logout".tr),
                     onTap: (e) async {
-                      // await Get.find<AuthService>().removeCurrentUser();
-                      // Get.find<RootController>().changePage(0);
+                      controller.signout;
                     },
                   ),
                 ],

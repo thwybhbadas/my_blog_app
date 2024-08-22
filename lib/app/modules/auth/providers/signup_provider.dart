@@ -1,7 +1,9 @@
 import 'package:get/get.dart'; 
 import 'package:get_storage/get_storage.dart';
 import 'package:my_blog_app/app/constants/conatans.dart';
-import 'package:my_blog_app/app/modules/auth/models/models.dart'; 
+import 'package:my_blog_app/app/modules/auth/models/models.dart';
+import 'package:my_blog_app/app/modules/auth/models/signup_request_model.dart';
+import 'package:my_blog_app/app/modules/auth/models/signup_response_model.dart'; 
 
 class SignupProvider extends GetConnect { 
   final storage = GetStorage(); 
@@ -29,9 +31,9 @@ class SignupProvider extends GetConnect {
   //   return response.body; 
   // } 
  
-  Future<Response<SignupResponsModel>> postSignup(SignupRequestModel signup) async => 
+  Future<Response<SignupResponseModel>> postSignup(SignupRequestModel signup) async => 
       await post('signup', signup.toJson(), contentType: _contentType, decoder: (data) { 
-        return SignupResponsModel.fromJson(data); 
+        return SignupResponseModel.fromJson(data); 
       }); 
  
   // Future<Response> deleteSignup(int id) async => await delete('signup/$id'); 

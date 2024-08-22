@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:my_blog_app/app/modules/auth/models/models.dart';
+import 'package:my_blog_app/app/modules/auth/models/signin_request_model.dart';
+import 'package:my_blog_app/app/modules/auth/models/signin_response_model.dart';
 
 
 class SigninProvider extends GetConnect {
