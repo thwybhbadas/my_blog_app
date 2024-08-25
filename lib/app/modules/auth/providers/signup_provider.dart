@@ -1,7 +1,6 @@
 import 'package:get/get.dart'; 
 import 'package:get_storage/get_storage.dart';
 import 'package:my_blog_app/app/constants/conatans.dart';
-import 'package:my_blog_app/app/modules/auth/models/models.dart';
 import 'package:my_blog_app/app/modules/auth/models/signup_request_model.dart';
 import 'package:my_blog_app/app/modules/auth/models/signup_response_model.dart'; 
 
@@ -10,7 +9,7 @@ class SignupProvider extends GetConnect {
   final String _contentType = 'application/json'; 
  
   Map<String, String> getHeaders() { 
-    final String authorizationToken = storage.read('jwt_token'); 
+    storage.read('jwt_token'); 
     Map<String, String> headers = <String, String>{}; 
  
     headers.assign('Content-Type', _contentType); 

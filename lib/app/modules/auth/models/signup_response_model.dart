@@ -1,6 +1,6 @@
 class SignupResponseModel { 
   Data? data; 
-  Null? message; 
+  Null message; 
  
   SignupResponseModel({this.data, this.message}); 
  

@@ -1,11 +1,9 @@
 import 'package:get/get.dart';
 import 'package:my_blog_app/app/modules/create_post/bindings/create_post_binding.dart';
 import 'package:my_blog_app/app/modules/create_post/views/create_post_view.dart';
-
 import '../modules/auth/bindings/bindings.dart';
 import '../modules/auth/views/views.dart';
 import '../modules/home/bindings/bindings.dart';
-import '../modules/home/views/get_all_posts.dart';
 import '../modules/home/views/views.dart';
 import '../modules/onboarding/bindings/bindings.dart';
 import '../modules/onboarding/views/onboarding_view.dart';

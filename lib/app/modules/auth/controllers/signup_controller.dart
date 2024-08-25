@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:my_blog_app/app/modules/auth/models/models.dart';
 import 'package:my_blog_app/app/modules/auth/models/signup_request_model.dart';
 import 'package:my_blog_app/app/modules/auth/models/signup_response_model.dart';
 import 'package:my_blog_app/app/modules/auth/providers/providers.dart';

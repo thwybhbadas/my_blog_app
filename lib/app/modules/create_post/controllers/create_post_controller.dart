@@ -11,9 +11,9 @@ class CreatePostController extends GetxController {
   var isLoading = true.obs;
   var selectedImage = Rx<File?>(null);
 
-  final PostProvider postProvider;
+  final PostProvider postProvider=Get.put(PostProvider());
 
-  CreatePostController({required this.postProvider});
+  CreatePostController();
 
   void createPosts(PostCreateModel post) async {
     try {

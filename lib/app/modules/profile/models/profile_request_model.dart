@@ -12,10 +12,10 @@ class ProfileRequestModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['username'] = this.username;
-    data['name'] = this.name;
-    data['email'] = this.email;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['username'] = username;
+    data['name'] = name;
+    data['email'] = email;
     return data;
   }
 }

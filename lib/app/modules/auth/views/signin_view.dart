@@ -71,6 +71,7 @@ class SigninView extends GetView<AuthController> {
                     if (value!.isEmpty) {
                       return 'هذا الحقل مطلوب';
                     }
+                    return null;
                   },
                 ),
                 const SizedBox(

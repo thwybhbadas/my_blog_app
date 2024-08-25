@@ -1,6 +1,6 @@
 class ProfileResponseModel {
   Data? data;
-  Null? message;
+  Null message;
 
   ProfileResponseModel({this.data, this.message});
 
@@ -10,11 +10,11 @@ class ProfileResponseModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
-    data['message'] = this.message;
+    data['message'] = message;
     return data;
   }
 }

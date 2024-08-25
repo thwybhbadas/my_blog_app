@@ -1,6 +1,6 @@
 class SigninResponseModel {
   Data? data;
-  Null? message;
+  Null message;
 
   SigninResponseModel({this.data, this.message});
 

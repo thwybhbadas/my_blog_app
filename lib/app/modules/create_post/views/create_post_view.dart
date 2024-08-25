@@ -47,7 +47,7 @@ class CreatePostView extends GetView<CreatePostController> {
                   final post = PostCreateModel(
                     title: titleController.text,
                     content: contentController.text,
-                    // image: controller.selectedImage.value,
+                    image: controller.selectedImage.value,
                   );
                   controller.createPosts(post);
                   print(post.image);
