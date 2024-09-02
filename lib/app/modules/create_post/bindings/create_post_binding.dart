@@ -7,7 +7,7 @@ class CreatePostBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<CreatePostController>(
-        () => CreatePostController());
+        () => CreatePostController(postProvider: PostProvider()));
  Get.lazyPut<PostProvider>(
         () => PostProvider());
     Get.lazyPut<RefreshTokenController>(() => RefreshTokenController());

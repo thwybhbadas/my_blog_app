@@ -22,32 +22,49 @@ class RootView extends GetView<RootController> {
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
             ),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                color: Colors.black26,
-                blurRadius: 10.0,
-                spreadRadius: 1,
-                offset: Offset(0.0, 0.75),
-              ),
-            ]),
+          ),
         child: Obx(
           () => BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
-            selectedItemColor: Color(0xFF01B7F1),
-            unselectedItemColor: Color(0xFFA1A1A1),
+            selectedItemColor: AppColors.primaryColore,
+            unselectedItemColor: AppColors.secondaryColor,
             selectedLabelStyle: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 15,
             ),
             currentIndex: controller.selectedIndex,
             onTap: controller.onTap,
-            items: const [
+            items:  [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.home_outlined), label: 'الصفحة الرئيسية'),
+                  icon: Container(
+                    padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: controller.selectedIndex == 0
+                        ? AppColors.secondaryColor
+                        :null,
+                    shape: BoxShape.circle,
+                  ),
+                    child: Icon(Icons.home_outlined)), label: 'الصفحة الرئيسية'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.post_add), label: 'منشور جديد'),
+                  icon: Container(padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: controller.selectedIndex == 1
+                        ? AppColors.secondaryColor
+                        :null,
+                    shape: BoxShape.circle,
+                  ),
+                  
+                      child: Icon(Icons.post_add)), label: 'منشور جديد'),
               BottomNavigationBarItem(
-                  icon:Icon( Icons.person_outline), label: 'الإعدادات'),
+                  icon:Container(
+                    padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: controller.selectedIndex == 2
+                        ? AppColors.secondaryColor
+                        :null,
+                    shape: BoxShape.circle,
+                  ),
+                    child: Icon( Icons.person_outline)), label: 'حسابي'),
            
             ],
           ),

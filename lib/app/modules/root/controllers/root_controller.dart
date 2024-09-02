@@ -1,11 +1,15 @@
 import 'package:get/get.dart';
 import 'package:my_blog_app/app/modules/create_post/views/create_post_view.dart';
+import 'package:my_blog_app/app/modules/home/models/all_posts_respons_model.dart';
 import 'package:my_blog_app/app/modules/home/views/get_all_posts.dart';
 import 'package:my_blog_app/app/modules/home/views/views.dart';
+import 'package:my_blog_app/app/modules/profile/controllers/profile_controller.dart';
+import 'package:my_blog_app/app/modules/profile/models/profile_request_model.dart';
 import 'package:my_blog_app/app/modules/profile/views/account_view.dart';
 
 class RootController extends GetxController {
   final RxInt _selectedIndex = 0.obs;
+  final ProfileController controller = Get.find<ProfileController>();
 
   int get selectedIndex => _selectedIndex.value;
 
@@ -34,8 +38,7 @@ class RootController extends GetxController {
     //explor screen
     CreatePostView(),
     //favorite screen
-     AccountView(),
-    
+AccountView()   , 
    
   ];
   

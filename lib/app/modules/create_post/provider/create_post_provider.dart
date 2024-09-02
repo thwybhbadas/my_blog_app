@@ -4,20 +4,32 @@ import 'package:my_blog_app/app/modules/auth/controllers/refresh_token_controlle
 import 'package:my_blog_app/app/modules/create_post/model/post_create_model.dart';
 
 class PostProvider extends GetConnect {
-  final String baseUrl = 'http://myblog.mobaen.com/api';
-  final storage = GetStorage();
+   final GetStorage storage = GetStorage();
   final RefreshTokenController tokenController = Get.find();
-  Future<Response> createPost(PostCreateModel postcreate) async {
-    await tokenController.refreshToken();
-    final form = FormData({
-      'title': postcreate.title,
-      'content': postcreate.content,
-      'image': postcreate.image,
-    });
 
-    final response = await post('$baseUrl/posts', form,
-        headers: {'Authorization': 'Bearer ${storage.read("jwt_token")}'});
+   @override
+  void onInit() {
+    httpClient.defaultDecoder = (map) {
+      if (map is Map<String, dynamic>) {
+        return PostCreateModel.fromJson(map);
+      }
+      return null;
+    };
+     httpClient.baseUrl = 'https://myblog.mobaen.com/api/';
+    super.onInit(); // Ensure that super.onInit() is called
+  }
 
+  
+  Future<Response<PostCreateModel>> createPost(FormData postcreate) async {
+     Response<PostCreateModel> response = await post(
+      'https://myblog.mobaen.com/api/posts',
+      postcreate,
+      contentType: 'multipart/form-data',
+      headers: {
+        'Authorization': 'Bearer ${storage.read("jwt_token")}',
+      },
+      decoder: (data) => PostCreateModel.fromJson(data),
+    );
     return response;
   }
 }

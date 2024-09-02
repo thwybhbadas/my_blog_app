@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:my_blog_app/app/constants/conatans.dart';
+import 'package:my_blog_app/app/modules/auth/widgets/widgets.dart';
 import 'package:my_blog_app/app/modules/create_post/controllers/create_post_controller.dart';
 import 'package:my_blog_app/app/modules/create_post/model/post_create_model.dart';
 
@@ -14,44 +16,141 @@ class CreatePostView extends GetView<CreatePostController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('إنشاء منشور'),
+        title: Text(
+          'إنشاء منشور',
+          style: TextStyleConst.boldTextStyle(AppColors.primaryColore, 25),
+        ),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            // mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              TextField(
+              Text(
+                'العنوان',
+                style: TextStyleConst.mediumTextStyle(Colors.black, 16),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormField(
                 controller: titleController,
-                decoration: InputDecoration(labelText: 'العنوان'),
-              ),
-              TextField(
-                controller: contentController,
-                decoration: InputDecoration(labelText: 'المحتوى'),
-              ),
-              SizedBox(height: 20),
-              Obx(() => controller.selectedImage.value != null
-                  ? Container(
-                    height: 200,
-                    child: Image.file(controller.selectedImage.value!))
-                  : Text('لم يتم اختيار صورة')),
-              ElevatedButton.icon(
-                icon: Icon(Icons.camera_alt),
-                label: Text('اختر صورة'),
-                onPressed: () => controller.pickImage(ImageSource.gallery),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                child: Text('إنشاء منشور'),
-                onPressed: () {
-                  final post = PostCreateModel(
-                    title: titleController.text,
-                    content: contentController.text,
-                    image: controller.selectedImage.value,
-                  );
-                  controller.createPosts(post);
-                  print(post.image);
+                minLines: 1,
+                maxLines: 1,
+                keyboardType: TextInputType.name,
+                decoration: const InputDecoration(
+                  fillColor: AppColors.secondaryColor,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Color(0xffd9d9d9), width: 1.0),
+                    borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Color(0xffd9d9d9), width: 1.0),
+                      borderRadius: BorderRadius.all(Radius.circular(6.0))),
+                ),
+                onChanged: (value) => controller.title.value = value,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'هذا الحقل مطلوب';
+                  }
+                  return null;
                 },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(
+                'المحتوى',
+                style: TextStyleConst.mediumTextStyle(Colors.black, 16),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                controller: contentController,
+                minLines: 3,
+                maxLines: 20,
+                keyboardType: TextInputType.multiline,
+                decoration: const InputDecoration(
+                  fillColor: AppColors.secondaryColor,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Color(0xffd9d9d9), width: 1.0),
+                    borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Color(0xffd9d9d9), width: 1.0),
+                      borderRadius: BorderRadius.all(Radius.circular(6.0))),
+                ),
+                onChanged: (value) => controller.content.value = value,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'هذا الحقل مطلوب';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'اختر صورة',
+                    style: TextStyleConst.mediumTextStyle(Colors.black, 16),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      controller.pickImage();
+                    },
+                    child: Container(
+                        padding: const EdgeInsets.all(5),
+                        decoration: const BoxDecoration(
+                          color: AppColors.secondaryColor,
+                          borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                        ),
+                        child: const Icon(
+                          Icons.image_outlined,
+                          color: AppColors.primaryColore,
+                        )),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Center(
+                child: Obx(() => controller.image.value != null
+                    ? Container(
+                        child: ClipRRect(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(6.0)),
+                            child: Image.file(
+                              controller.image.value!,
+                              fit: BoxFit.fill,
+                            )))
+                    : const Text('لم يتم اختيار صورة')),
+              ),
+              const SizedBox(height: 20),
+              MainBtnWidget(
+                color: AppColors.primaryColore,
+                onPressed: () async {
+                  await controller.createPosts();
+                },
+                text: Text(
+                  'إنشاء منشور',
+                  style: TextStyleConst.mediumTextStyle(
+                      AppColors.whiteTextColor, 20),
+                ),
               ),
             ],
           ),

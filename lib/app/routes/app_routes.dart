@@ -14,6 +14,13 @@ abstract class Routes {
   static const CREATEPOST = _Paths.CREATEPOST;
   static const GETALLPOST = _Paths.GETALLPOST;
   static const PROFILE = _Paths.PROFILE;
+  static const ALLPROFILES = _Paths.ALLPROFILES;
+  static const FAVORITES = _Paths.FAVORITES;
+      static const FOLLOWERS =  _Paths.FOLLOWERS;
+ static const MYPOSTS =  _Paths.MYPOSTS;
+static const LIKEDPOSTS= _Paths.LIKEDPOSTS;
+static const SAVEDPOSTS= _Paths.SAVEDPOSTS;
+
 }
 
 abstract class _Paths {
@@ -29,4 +36,10 @@ abstract class _Paths {
   static const CREATEPOST = '/create_post';
   static const GETALLPOST = '/grt_all_post';
   static const PROFILE = '/profile';
+  static const ALLPROFILES = '/all_profiles';
+  static const FAVORITES = '/all_favorites';
+    static const FOLLOWERS = '/follwers';
+ static const MYPOSTS= '/my_posts';
+ static const LIKEDPOSTS = '/liked_posts';
+ static const SAVEDPOSTS= '/liked_posts';
 }

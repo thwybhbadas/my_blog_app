@@ -25,5 +25,7 @@ class AuthBinding extends Bindings {
    Get.lazyPut<PhoneVerificationProvider>(
     () => PhoneVerificationProvider(),
    );
+   Get.put(RefreshTokenController());
+
   }
 }

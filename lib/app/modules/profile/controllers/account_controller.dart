@@ -28,4 +28,14 @@ class AccountController extends GetxController {
     storage.erase();
     Get.offAllNamed(Routes.SIGNIN);
   }
+  void allProfiles() 
+  {
+   
+    Get.toNamed(Routes.ALLPROFILES);
+  }
+    void myPosts() 
+  {
+   
+    Get.toNamed(Routes.MYPOSTS);
+  }
 }

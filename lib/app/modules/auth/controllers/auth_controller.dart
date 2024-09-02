@@ -56,11 +56,11 @@ class AuthController extends GetxController {
         Get.offAllNamed(Routes.ROOT);
       } else {
        
-        Get.snackbar('Error', response.body?.message ?? 'Unknown error');
+        Get.snackbar('خطأ', response.body?.message ?? 'يرجى الإتصال بالإنترنت');
       }
       _isLoading.value = false; 
     }).catchError((error) {
-      Get.snackbar('Error', error.toString());
+      Get.snackbar('خطأ', error.toString());
       _isLoading.value = false; 
     });
   }

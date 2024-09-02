@@ -1,0 +1,132 @@
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:my_blog_app/app/modules/auth/controllers/refresh_token_controller.dart';
+import 'package:my_blog_app/app/modules/home/models/all_posts_respons_model.dart';
+
+class HomeProvider extends GetConnect {
+final storage = GetStorage();
+  final RefreshTokenController tokenController = Get.find();
+  Future<List<Post>> fetchPosts() async {
+    await tokenController.refreshToken();
+     List<Post> allPosts = [];
+    int currentPage = 1;
+    bool hasMorePages = true;
+    while (hasMorePages){
+ final response = await get(
+        'http://myblog.mobaen.com/api/posts?page=$currentPage',
+        headers: {'Authorization': 'Bearer ${storage.read("jwt_token")}'},
+      );
+
+    if (response.statusCode == 200) {
+      final data = response.body['data']['data'];
+     allPosts.addAll(List<Post>.from(data.map((item) => Post.fromJson(item))));
+       // Check if there are more pages
+        int lastPage = response.body['data']['last_page'];
+        hasMorePages = currentPage < lastPage;
+        currentPage++;
+    } else {
+      throw Exception('Failed to load posts');
+    }
+  }
+  return allPosts.reversed.toList();
+  }
+
+Future<List<int>> fetchLikes() async {
+    await tokenController.refreshToken();
+    final response = await get(
+      'http://myblog.mobaen.com/api/likes',
+      headers: {'Authorization': 'Bearer ${storage.read("jwt_token")}'},
+    );
+    if (response.statusCode == 200) {
+      final data = response.body['data']['data'];
+      return List<int>.from(data.map((item) => item['pivot']['post_id']));
+    } else {
+      throw Exception('Failed to load likes');
+    }
+  }
+
+  Future<List<int>> fetchFavorites() async {
+    await tokenController.refreshToken();
+    final response = await get(
+      'http://myblog.mobaen.com/api/favorites',
+      headers: {'Authorization': 'Bearer ${storage.read("jwt_token")}'},
+    );
+    if (response.statusCode == 200) {
+      final data = response.body['data']['data'];
+      return List<int>.from(data.map((item) => item['pivot']['post_id']));
+    } else {
+      throw Exception('Failed to load favorites');
+    }
+  }
+
+  Future<List<int>> fetchFollows() async {
+    await tokenController.refreshToken();
+    final response = await get(
+      'http://myblog.mobaen.com/api/follows',
+      headers: {'Authorization': 'Bearer ${storage.read("jwt_token")}'},
+    );
+    if (response.statusCode == 200) {
+      final data = response.body['data']['data'];
+      return List<int>.from(data.map((item) => item['pivot']['followed_id']));
+    } else {
+      throw Exception('Failed to load follows');
+    }
+  }
+
+  Future<Response> likePost(int postId) async {
+    await tokenController.refreshToken();
+    return await post(
+      'http://myblog.mobaen.com/api/likes',
+      {'post_id': postId},
+      contentType: "application/json",
+      headers: {'Authorization': 'Bearer ${storage.read("jwt_token")}'},
+    );
+  }
+
+  Future<Response> unlikePost(int postId) async {
+    await tokenController.refreshToken();
+    return await delete(
+      'http://myblog.mobaen.com/api/likes/$postId',
+      contentType: "application/json",
+      headers: {'Authorization': 'Bearer ${storage.read("jwt_token")}'},
+    );
+  }
+
+  Future<Response> savePost(int postId) async {
+    await tokenController.refreshToken();
+    return await post(
+      'http://myblog.mobaen.com/api/favorites',
+      {'post_id': postId},
+      contentType: "application/json",
+      headers: {'Authorization': 'Bearer ${storage.read("jwt_token")}'},
+    );
+  }
+
+  Future<Response> unsavePost(int postId) async {
+    await tokenController.refreshToken();
+    return await delete(
+      'http://myblog.mobaen.com/api/favorites/$postId',
+      contentType: "application/json",
+      headers: {'Authorization': 'Bearer ${storage.read("jwt_token")}'},
+    );
+  }
+
+  Future<Response> follow(int userId) async {
+    await tokenController.refreshToken();
+    return await post(
+      'http://myblog.mobaen.com/api/follows',
+      {'user_id': userId},
+      contentType: "application/json",
+      headers: {'Authorization': 'Bearer ${storage.read("jwt_token")}'},
+    );
+  }
+
+  Future<Response> unfollow(int userId) async {
+    await tokenController.refreshToken();
+    return await delete(
+      'http://myblog.mobaen.com/api/follows/$userId',
+      contentType: "application/json",
+      headers: {'Authorization': 'Bearer ${storage.read("jwt_token")}'},
+    );
+  }
+}

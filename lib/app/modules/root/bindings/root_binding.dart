@@ -4,8 +4,9 @@ import 'package:my_blog_app/app/modules/create_post/controllers/create_post_cont
 import 'package:my_blog_app/app/modules/create_post/provider/create_post_provider.dart';
 import 'package:my_blog_app/app/modules/home/controllers/all_posts_controller.dart';
 import 'package:my_blog_app/app/modules/home/controllers/controllers.dart';
+import 'package:my_blog_app/app/modules/home/providers/home_provider.dart';
 import 'package:my_blog_app/app/modules/profile/controllers/profile_controller.dart';
-
+import 'package:my_blog_app/app/modules/profile/provides/profile_provider.dart';
 import '../controllers/root_controller.dart';
 
 class RootBinding extends Bindings {
@@ -17,17 +18,20 @@ class RootBinding extends Bindings {
     Get.lazyPut<HomeController>(
       () => HomeController(),
     );
-     Get.lazyPut<CreatePostController>(
-      () => CreatePostController(),
+    Get.lazyPut<CreatePostController>(
+      () => CreatePostController(postProvider: PostProvider()),
     );
-     Get.lazyPut<AllPostsController>(
-      () => AllPostsController(),
+    Get.lazyPut<HomeController>(
+      () => HomeController(),
     );
 
     Get.lazyPut<ProfileController>(
-      () => ProfileController(),
+      () => ProfileController(HomeProvider(),profileProvider: ProfileProvider()),
     );
-        Get.lazyPut<RefreshTokenController>(() => RefreshTokenController());
+    Get.lazyPut<RefreshTokenController>(
+      () => RefreshTokenController()
+      );
 
+  
   }
 }

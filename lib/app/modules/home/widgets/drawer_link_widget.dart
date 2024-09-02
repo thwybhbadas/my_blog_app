@@ -11,11 +11,11 @@ class DrawerLinkWidget extends StatelessWidget {
   final String text;
   final ValueChanged<void> onTap;
   const DrawerLinkWidget({
-    Key? key,
+    super.key,
     required this.icon,
     required this.text,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +29,10 @@ class DrawerLinkWidget extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: Get.theme.focusColor.withOpacity(1),
+              color: AppColors.primaryColore,
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 12),
+              margin: const EdgeInsets.symmetric(horizontal: 12),
               width: 1,
               height: 24,
               color: Get.theme.focusColor.withOpacity(0.2),
@@ -47,3 +47,4 @@ class DrawerLinkWidget extends StatelessWidget {
     );
   }
 }
+

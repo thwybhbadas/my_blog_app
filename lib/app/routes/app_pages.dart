@@ -1,6 +1,11 @@
 import 'package:get/get.dart';
 import 'package:my_blog_app/app/modules/create_post/bindings/create_post_binding.dart';
 import 'package:my_blog_app/app/modules/create_post/views/create_post_view.dart';
+import 'package:my_blog_app/app/modules/profile/views/all_profiles_view.dart';
+import 'package:my_blog_app/app/modules/profile/views/followers_list_page.dart';
+import 'package:my_blog_app/app/modules/profile/views/liked_posts_page.dart';
+import 'package:my_blog_app/app/modules/profile/views/my_posts_view.dart';
+import 'package:my_blog_app/app/modules/profile/views/saved_posts_page.dart';
 import '../modules/auth/bindings/bindings.dart';
 import '../modules/auth/views/views.dart';
 import '../modules/home/bindings/bindings.dart';
@@ -25,7 +30,7 @@ class AppPages {
     // Home
     GetPage(
       name: _Paths.HOME,
-      page: () => const HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
     ),
     // Auth
@@ -38,6 +43,11 @@ class AppPages {
       name: _Paths.SIGNUP,
       page: () => SignupView(),
       binding: AuthBinding(),
+    ),
+      GetPage(
+      name: _Paths.FOLLOWERS,
+      page: () => FollowersListPage(),
+      binding: ProfileBinding(),
     ),
     GetPage(
       name: _Paths.PHONE_VERIFICATION,
@@ -69,15 +79,31 @@ class AppPages {
       page: () => CreatePostView(),
       binding: CreatePostBinding(),
     ),
-    // GetPage(
-    //   name: _Paths.GETALLPOST,
-    //   page: () => PostListView(),
-    //   binding: HomeBinding(),
-    // ),
+    GetPage(
+      name: _Paths.GETALLPOST,
+      page: () => AllProfilesView(),
+      binding: ProfileBinding(),
+    ),
+     GetPage(
+      name: _Paths.MYPOSTS,
+      page: () => MyPostsView(),
+      binding: ProfileBinding(),
+    ),
     GetPage(
       name: _Paths.PROFILE,
       page: () =>  ProfileView(),
       binding: ProfileBinding(),
     ),
+     GetPage(
+      name: _Paths.LIKEDPOSTS,
+      page: () =>  LikedPostsPage(),
+      binding: ProfileBinding(),
+    ),
+     GetPage(
+      name: _Paths.SAVEDPOSTS,
+      page: () =>  SavedPostsPage(),
+      binding: ProfileBinding(),
+    ),
+    
   ];
 }

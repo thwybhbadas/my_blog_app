@@ -1,47 +1,150 @@
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:my_blog_app/app/routes/routes.dart';
+import 'package:my_blog_app/app/modules/home/models/all_posts_respons_model.dart';
+import 'package:my_blog_app/app/modules/home/providers/home_provider.dart';
 
 class HomeController extends GetxController {
-  final storage = GetStorage();
+  var isLoading = true.obs;
+  var posts = <Post>[].obs;
+  var likedPosts = <int>[].obs;
+  var favoritePosts = <int>[].obs;
+  var followedUsers = <int>[].obs;
+  var currentPage = 1;
+  var lastPage = 1;
 
-  final count = 0.obs;
+  final HomeProvider provider = HomeProvider();
+
   @override
   void onInit() {
+    fetchInitialData();
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void fetchInitialData() async {
+    try {
+      isLoading(true);
+      await fetchPosts();
+      await fetchLikes();
+      await fetchFavorites();
+      await fetchFollows();
+    } finally {
+      isLoading(false);
+    }
   }
 
-  @override
-  void onClose() {
-    super.onClose();
+  Future<void> fetchPosts() async {
+    try {
+      isLoading(true);
+      var postsResult = await provider.fetchPosts();
+      posts.assignAll(postsResult);
+    } catch (e) {
+      print("Failed to load posts: $e");
+    } finally {
+      isLoading(false);
+    }
   }
 
-  void increment() => count.value++;
-
-  void showOnBoarding() 
-  {
-    storage.write("is_displaying_onboarding", true);
-    Get.offAllNamed(Routes.ONBOARDING);
+  Future<void> fetchLikes() async {
+    try {
+      var likesResult = await provider.fetchLikes();
+      likedPosts.assignAll(likesResult);
+    } catch (e) {
+      print("Failed to load likes: $e");
+    }
   }
 
-  void signout() 
-  {
-    storage.erase();
-    Get.offAllNamed(Routes.SIGNIN);
+  Future<void> fetchFavorites() async {
+    try {
+      var favoritesResult = await provider.fetchFavorites();
+      favoritePosts.assignAll(favoritesResult);
+    } catch (e) {
+      print("Failed to load favorites: $e");
+    }
   }
-   void createPost() 
-  {
-   
-    Get.offAllNamed(Routes.CREATEPOST);
+
+  Future<void> fetchFollows() async {
+    try {
+      var followsResult = await provider.fetchFollows();
+      followedUsers.assignAll(followsResult);
+    } catch (e) {
+      print("Failed to load follows: $e");
+    }
   }
-    void getAllPosts() 
-  {
-   
-    Get.offAllNamed(Routes.GETALLPOST);
+
+  void likePost(int id) async {
+    try {
+      await provider.likePost(id);
+      //post.isLiked = true;
+      posts.refresh();
+      if (!likedPosts.contains(id)) {
+        likedPosts.add(id);
+      }
+    } catch (e) {
+      // Handle error
+    }
   }
+
+  void unlikePost(int id) async {
+    try {
+      await provider.unlikePost(id);
+      // post.isLiked = false;
+      posts.refresh();
+      likedPosts.remove(id);
+    } catch (e) {
+      // Handle error
+    }
+  }
+
+  void savePost(int id) async {
+    try {
+      await provider.savePost(id);
+      //post.isSaved = true;
+      posts.refresh();
+      if (!favoritePosts.contains(id)) {
+        favoritePosts.add(id);
+      }
+    } catch (e) {
+      // Handle error
+    }
+  }
+
+  void unsavePost(int id) async {
+    try {
+      await provider.unsavePost(id);
+      // post.isSaved = false;
+      posts.refresh();
+      favoritePosts.remove(id);
+    } catch (e) {
+      // Handle error
+    }
+  }
+
+  void followUser(int id) async {
+    try {
+      await provider.follow(id);
+      // post.user.isFollowed = true;
+      posts.refresh();
+      if (!followedUsers.contains(id)) {
+        followedUsers.add(id);
+      }
+    } catch (e) {
+      // Handle error
+    }
+  }
+
+  void unfollowUser(int id) async {
+    try {
+      await provider.unfollow(id);
+      // post.user.isFollowed = false;
+      posts.refresh();
+      followedUsers.remove(id);
+    } catch (e) {
+      // Handle error
+    }
+  }
+
+  bool isPostLiked(int postId) => likedPosts.contains(postId);
+
+  bool isPostFavorited(int postId) => favoritePosts.contains(postId);
+
+  bool isUserFollowed(int userId) => followedUsers.contains(userId);
 }

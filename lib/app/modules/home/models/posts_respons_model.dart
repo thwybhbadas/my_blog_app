@@ -1,57 +1,58 @@
 class PostsResponsModel {
-  Data? data;
+  Posts? posts;
   String? message;
 
-  PostsResponsModel({this.data, this.message});
+  PostsResponsModel({this.posts, this.message});
 
   PostsResponsModel.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    posts = json['posts'] != null ?  Posts.fromJson(json['posts']) : null;
     message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (posts != null) {
+      data['posts'] = posts!.toJson();
     }
-    data['message'] = this.message;
+    data['message'] = message;
     return data;
   }
 }
 
-class Data {
-  String? title;
-  String? slug;
-  String? content;
-  String? image;
-  String? createdAt;
-  int? id;
+class Posts {
+  String title;
+  String slug;
+  String content;
+  String image;
+  String createdAt;
+  int id;
 
-  Data(
-      {this.title,
-      this.slug,
-      this.content,
-      this.image,
-      this.createdAt,
-      this.id});
+  Posts(
+      {required this.title,
+      required this.slug,
+      required this.content,
+      required this.image,
+      required this.createdAt,
+      required this.id});
 
-  Data.fromJson(Map<String, dynamic> json) {
-    title = json['title'];
-    slug = json['slug'];
-    content = json['content'];
-    image = json['image'];
-    createdAt = json['created_at'];
-    id = json['id'];
+  factory Posts.fromJson(Map<String, dynamic> json) {
+    return Posts(
+        title: json['title'],
+        slug: json['slug'],
+        content: json['content'],
+        image: json['image'],
+        createdAt: json['created_at'],
+        id: json['id']);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['slug'] = this.slug;
-    data['content'] = this.content;
-    data['image'] = this.image;
-    data['created_at'] = this.createdAt;
-    data['id'] = this.id;
-    return data;
+    final Map<String, dynamic> posts = <String, dynamic>{};
+    posts['title'] = title;
+    posts['slug'] = slug;
+    posts['content'] = content;
+    posts['image'] =image;
+    posts['created_at'] =createdAt;
+    posts['id'] = id;
+    return posts;
   }
 }

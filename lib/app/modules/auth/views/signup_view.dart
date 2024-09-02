@@ -189,13 +189,7 @@ class SignupView extends GetView<SignupController>  {
                         AppColors.whiteTextColor, 20),
                   ),
                 ),
-                TextButton(onPressed: (){
-                  Get.toNamed(Routes.PHONE_VERIFICATION);
-                }, child:  Text(
-                    "تسجيل حساب جديد".tr,
-                    style: TextStyleConst.mediumTextStyle(
-                        AppColors.whiteTextColor, 20),
-                  ),),
+                
                 const SizedBox(
                   height: 30,
                 ),

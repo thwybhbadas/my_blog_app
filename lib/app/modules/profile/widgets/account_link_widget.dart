@@ -26,17 +26,18 @@ class AccountLinkWidget extends StatelessWidget {
         child: Row(
           children: [
             icon!,
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 12),
-              width: 1,
-              height: 24,
-              color: Get.theme.focusColor.withOpacity(0.3),
-            ),
+            SizedBox(width: 12,),
+            // Container(
+            //   margin: const EdgeInsets.symmetric(horizontal: 12),
+            //   width: 1,
+            //   height: 24,
+            //   color: Get.theme.focusColor.withOpacity(0.3),
+            // ),
             Expanded(
               child:Text(text!,style: TextStyleConst.forgotTextStyle(
                             AppColors.blackTextColor, 18),) 
             ),
-            Icon(
+            const Icon(
               Icons.arrow_forward_ios,
               size: 12,
               color: AppColors.primaryColore,

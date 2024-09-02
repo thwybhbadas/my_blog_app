@@ -1,0 +1,1 @@
+export './create_post_binding.dart';

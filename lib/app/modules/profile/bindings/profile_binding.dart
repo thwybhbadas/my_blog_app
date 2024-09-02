@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
+import 'package:my_blog_app/app/modules/home/controllers/all_posts_controller.dart';
 import 'package:my_blog_app/app/modules/home/controllers/controllers.dart';
+import 'package:my_blog_app/app/modules/home/providers/home_provider.dart';
 import 'package:my_blog_app/app/modules/profile/controllers/account_controller.dart';
 import 'package:my_blog_app/app/modules/profile/provides/profile_provider.dart';
 
@@ -9,7 +11,7 @@ class ProfileBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<ProfileController>(
-      () => ProfileController(),
+      () => ProfileController(HomeProvider(),profileProvider: ProfileProvider()),
     );
      Get.lazyPut<ProfileProvider>(
       () => ProfileProvider(),
@@ -20,5 +22,10 @@ class ProfileBinding extends Bindings {
      Get.lazyPut<HomeController>(
       () => HomeController(),
     );
+     Get.lazyPut<HomeController>(
+      () => HomeController(),
+    );
+    
+    
   }
 }
