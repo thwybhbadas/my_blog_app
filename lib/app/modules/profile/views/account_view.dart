@@ -34,10 +34,7 @@ class AccountView extends GetView<ProfileController> {
             body: SingleChildScrollView(
               child: Column(
                 children: [
-                  Obx(() {
-                    return ProfileDetailsPage(
-                        profile: controller.profileResponse.value);
-                  }),
+                  ProfileDetailsPage(profile: controller.profileResponse.value),
                   Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 15),
@@ -146,35 +143,45 @@ class ProfileDetailsPage extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         if (profile != null) ...[
-          Text(
-            profile!.username,
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          Text(
-            profile!.name,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
-          ),
-          Text(
-            profile!.email,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
-          ),
-        ] else ...[
-          MaterialButton(
-            onPressed: () {
-              Get.toNamed(Routes.PROFILE);
-            },
-            padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 9),
-            color: AppColors.primaryColore, disabledElevation: 0,
-            // disabledColor: Get.theme.focusColor,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-            elevation: 0,
-            child: Text(
-              'إنشاء الملف الشخصي',
-              style:
-                  TextStyleConst.mediumTextStyle(AppColors.whiteTextColor, 20),
+          Obx(
+            ()=> Column(
+              children: [
+                Text(
+                  profile!.username,
+                  style:
+                      const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  profile!.name,
+                  style:
+                      const TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  profile!.email,
+                  style:
+                      const TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+                ),
+              ],
             ),
           ),
+        ] else ...[
+          Container()
+          //   MaterialButton(
+          //     onPressed: () {
+          //       Get.toNamed(Routes.PROFILE);
+          //     },
+          //     padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 9),
+          //     color: AppColors.primaryColore, disabledElevation: 0,
+          //     // disabledColor: Get.theme.focusColor,
+          //     shape:
+          //         RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+          //     elevation: 0,
+          //     child: Text(
+          //       'إنشاء الملف الشخصي',
+          //       style:
+          //           TextStyleConst.mediumTextStyle(AppColors.whiteTextColor, 20),
+          //     ),
+          //   ),
         ],
         const SizedBox(height: 16),
       ],
