@@ -89,7 +89,7 @@ class SignupController extends GetxController {
         DisplaySnackBar.displaySnackBar(
             "تم التسجيل بنجاح", 3, AppColors.greenColor);
         Get.offAllNamed(Routes.PHONE_VERIFICATION);
-      } else if (response.statusCode == 409) {
+      } else if (response.statusCode == 400) {
         DisplaySnackBar.displaySnackBar(
             "هذا الرقم مسجل بالفعل", 3, AppColors.redColor);
       } else {

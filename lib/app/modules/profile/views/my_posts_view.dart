@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_blog_app/app/constants/conatans.dart';
 import 'package:my_blog_app/app/modules/home/controllers/controllers.dart';
-import 'package:my_blog_app/app/modules/home/views/home_view.dart';
 import 'package:my_blog_app/app/modules/profile/controllers/profile_controller.dart';
 
 import '../../home/models/all_posts_respons_model.dart';

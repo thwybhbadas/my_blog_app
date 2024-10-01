@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -92,21 +94,26 @@ class ProfileDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final ProfileController controller = Get.find();
+    final ProfileController controller = Get.find();
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Row(
         children: [
-          const CircleAvatar(
-            radius: 30,
-            backgroundColor: AppColors.secondaryColor,
-            child: Icon(
-              Icons.person,
-              color: Colors.white,
-              size: 35,
-            ),
-          ),
+        CircleAvatar(
+              radius: 30,
+              backgroundColor: AppColors.secondaryColor,
+              backgroundImage: controller.profileImagePath.value.isNotEmpty 
+                  ? FileImage(File(controller.profileImagePath.value)) 
+                  : null, // إذا لم يكن هناك صورة، لا تستخدم الخلفية
+              child: controller.profileImagePath.value.isEmpty 
+                  ? const Icon(
+                      Icons.person,
+                      color: Colors.white,
+                      size: 30,
+                    ) 
+                  : null,
+                     ), const SizedBox(height: 16),
           const SizedBox(width: 5),
           if (profile != null) ...[
             Column(

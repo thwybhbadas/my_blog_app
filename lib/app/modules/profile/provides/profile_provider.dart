@@ -212,4 +212,41 @@ Future<List<ProfileResponseModel>> fetchAllProfiles() async {
     // Reverse the list to show newest posts first
     return allPosts.reversed.toList();
   }
+   Future<Response> likePost(int postId) async {
+    await tokenController.refreshToken();
+    return await post(
+      'http://myblog.mobaen.com/api/likes',
+      {'post_id': postId},
+      contentType: "application/json",
+      headers: {'Authorization': 'Bearer ${storage.read("jwt_token")}'},
+    );
+  }
+
+  Future<Response> unlikePost(int postId) async {
+    await tokenController.refreshToken();
+    return await delete(
+      'http://myblog.mobaen.com/api/likes/$postId',
+      contentType: "application/json",
+      headers: {'Authorization': 'Bearer ${storage.read("jwt_token")}'},
+    );
+  }
+
+  Future<Response> savePost(int postId) async {
+    await tokenController.refreshToken();
+    return await post(
+      'http://myblog.mobaen.com/api/favorites',
+      {'post_id': postId},
+      contentType: "application/json",
+      headers: {'Authorization': 'Bearer ${storage.read("jwt_token")}'},
+    );
+  }
+
+  Future<Response> unsavePost(int postId) async {
+    await tokenController.refreshToken();
+    return await delete(
+      'http://myblog.mobaen.com/api/favorites/$postId',
+      contentType: "application/json",
+      headers: {'Authorization': 'Bearer ${storage.read("jwt_token")}'},
+    );
+  }
 }

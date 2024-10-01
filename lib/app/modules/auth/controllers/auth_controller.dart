@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:my_blog_app/app/constants/conatans.dart';
 import 'package:my_blog_app/app/modules/auth/models/signin_request_model.dart';
 import 'package:my_blog_app/app/modules/auth/providers/providers.dart';
 import 'package:my_blog_app/app/modules/auth/widgets/diplay_snack_bar.dart';
@@ -57,7 +58,13 @@ class AuthController extends GetxController {
         storage.write("user_id", response.body?.data?.id);
 
         Get.offAllNamed(Routes.ROOT);
-      } else {
+      } else if (response.statusCode == 401) {
+        DisplaySnackBar.displaySnackBar(
+            "يجب عليك ان تسجل اولا لتستطيع الدخول", 3, AppColors.redColor);
+      }
+
+      
+       else {
         Get.snackbar('خطأ', response.body?.message ?? 'Unknown error');
       }
       _isLoading.value = false;

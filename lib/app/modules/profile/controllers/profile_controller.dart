@@ -27,19 +27,11 @@ class ProfileController extends GetxController {
   var followingProfiles = <ProfileResponseModel?>[].obs;
   var followersProfiles = <ProfileResponseModel?>[].obs;
   var profileImagePath = ''.obs; // مسار الصورة
-
-  // var username = ''.obs;
-  // var name = ''.obs;
-  // var email = ''.obs;
-
   final ProfileProvider profileProvider;
-  // final HomeProvider homeProvider;
   final GetStorage storage = GetStorage();
   final ImagePicker picker = ImagePicker();
 
-  //####
-  // ProfileResponseModel? profileResponseModel;
-
+ 
   ProfileController({required this.profileProvider});
 
 
@@ -48,7 +40,6 @@ class ProfileController extends GetxController {
     super.onInit();
     fetchFollowing();
     loadProfileImage();
-
     fetchFollowers();
     fetchLikedPosts();
     fetchSavedPosts();
@@ -94,7 +85,6 @@ class ProfileController extends GetxController {
       final response = await profileProvider.createProfile(profileData);
       print(response.body);
       if (response.isOk) {
-        print("create profilllllllllllllle");
         fetchProfileByUserId(storage.read('user_id'));
         Get.snackbar('ناجح', "تم انشاء البروفايل بنجاح");
         Get.back();
@@ -106,7 +96,6 @@ class ProfileController extends GetxController {
       isLoading(false);
     }
   }
-  // Fetch profile after creation
 
   // void createProfile(ProfileRequestModel profileData) async {
   //   isLoading(true);
@@ -239,7 +228,7 @@ class ProfileController extends GetxController {
       var response = await profileProvider.deletePost(id);
       
       if (response.statusCode == 200) {
-        // حذف المنشور من القائمة المحلية
+        // حذف المنشور من القائمة 
         posts.removeWhere((post) => post.id == id);
         print("Post deleted successfully");
       } else {
@@ -262,4 +251,6 @@ class ProfileController extends GetxController {
   void myPosts() {
     Get.toNamed(Routes.MYPOSTS);
   }
+  
 }
+
