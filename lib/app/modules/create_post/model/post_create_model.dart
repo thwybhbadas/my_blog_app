@@ -1,4 +1,3 @@
-import 'dart:io';
 
 class PostCreateModel {
   final int id;

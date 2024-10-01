@@ -1,10 +1,7 @@
 import 'package:get/get.dart';
 import 'package:my_blog_app/app/modules/create_post/views/create_post_view.dart';
-import 'package:my_blog_app/app/modules/home/models/all_posts_respons_model.dart';
-import 'package:my_blog_app/app/modules/home/views/get_all_posts.dart';
 import 'package:my_blog_app/app/modules/home/views/views.dart';
 import 'package:my_blog_app/app/modules/profile/controllers/profile_controller.dart';
-import 'package:my_blog_app/app/modules/profile/models/profile_request_model.dart';
 import 'package:my_blog_app/app/modules/profile/views/account_view.dart';
 
 class RootController extends GetxController {
@@ -13,7 +10,7 @@ class RootController extends GetxController {
 
   int get selectedIndex => _selectedIndex.value;
 
-   @override
+  @override
   void onInit() {
     super.onInit();
   }
@@ -34,12 +31,10 @@ class RootController extends GetxController {
 
   final screens = [
     //home screen
-    HomeView (),
+    const HomeView(),
     //explor screen
     CreatePostView(),
     //favorite screen
-AccountView()   , 
-   
+    AccountView(),
   ];
-  
 }

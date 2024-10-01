@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2020 .
- */
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_blog_app/app/constants/conatans.dart';
@@ -31,20 +27,18 @@ class DrawerLinkWidget extends StatelessWidget {
               icon,
               color: AppColors.primaryColore,
             ),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 12),
-              width: 1,
-              height: 24,
-              color: Get.theme.focusColor.withOpacity(0.2),
+            const SizedBox(
+              width: 10,
             ),
             Expanded(
-              child: Text(text.tr, style: TextStyleConst.forgotTextStyle(
-                            AppColors.blackTextColor, 18),)
-            ),
+                child: Text(
+              text,
+              style:
+                  TextStyleConst.forgotTextStyle(AppColors.blackTextColor, 18),
+            )),
           ],
         ),
       ),
     );
   }
 }
-

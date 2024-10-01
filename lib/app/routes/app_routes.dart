@@ -20,6 +20,8 @@ abstract class Routes {
  static const MYPOSTS =  _Paths.MYPOSTS;
 static const LIKEDPOSTS= _Paths.LIKEDPOSTS;
 static const SAVEDPOSTS= _Paths.SAVEDPOSTS;
+static const SETTINGS= _Paths.SETTINGS;
+
 
 }
 
@@ -42,4 +44,6 @@ abstract class _Paths {
  static const MYPOSTS= '/my_posts';
  static const LIKEDPOSTS = '/liked_posts';
  static const SAVEDPOSTS= '/liked_posts';
+  static const SETTINGS= '/settings';
+
 }

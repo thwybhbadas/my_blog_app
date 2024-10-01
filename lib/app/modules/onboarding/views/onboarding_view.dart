@@ -47,18 +47,18 @@ class OnboardingView extends GetView<OnboardingController> {
                       controller.currentPage.value = index,
                   children: [
                     OnboardingWidget(
-                      title: 'Welcome to the Blog App',
-                      description: 'Discover new content every day',
-                      imagePath: 'assets/images/onboarding1.png',
+                      title: 'مرحبًا بك في تطبيق مدونتي',
+                      description: 'اكتشف محتوى جديد كل يوم',
+                      imagePath: 'assets/images/onboarding3.png',
                     ),
                     OnboardingWidget(
-                        title: 'Follow Your Interests',
-                        description: 'Get updates on topics you care about',
+                        title: 'تابع اهتماماتك',
+                        description: 'احصل على تحديثات حول الموضوعات التي تهمك',
                         imagePath: 'assets/images/onboarding2.png'),
                     OnboardingWidget(
-                      title: 'Join the Community',
-                      description: 'Connect with like-minded people',
-                      imagePath: 'assets/images/onboarding3.png',
+                      title: 'انضم إلى مجتمعنا',
+                      description: 'تواصل مع الأشخاص ذوي التفكير المماثل',
+                      imagePath: 'assets/images/onboarding1.png',
                     ),
                   ],
                 ),
@@ -67,7 +67,7 @@ class OnboardingView extends GetView<OnboardingController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
-                    onPressed: controller.finished,
+                    onPressed: controller.back,
                     child: Text('Back'),
                   ),
                   TextButton(
@@ -75,7 +75,7 @@ class OnboardingView extends GetView<OnboardingController> {
                     child: Text('Skip'),
                   ),
                   TextButton(
-                    onPressed: controller.finished,
+                    onPressed: controller.next,
                     child: Text('Next'),
                   ),
                 ],

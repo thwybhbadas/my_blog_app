@@ -135,10 +135,8 @@ class FavoritesPost {
     data['content'] = content;
     data['image'] = image;
     data['created_at'] = createdAt;
-    if (pivot != null) {
-      data['pivot'] = pivot!.toJson();
-    }
-    return data;
+    data['pivot'] = pivot.toJson();
+      return data;
   }
 }
 

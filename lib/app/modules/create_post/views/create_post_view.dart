@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:my_blog_app/app/constants/conatans.dart';
 import 'package:my_blog_app/app/modules/auth/widgets/widgets.dart';
 import 'package:my_blog_app/app/modules/create_post/controllers/create_post_controller.dart';
-import 'package:my_blog_app/app/modules/create_post/model/post_create_model.dart';
 
 class CreatePostView extends GetView<CreatePostController> {
   final TextEditingController titleController = TextEditingController();
@@ -130,14 +128,13 @@ class CreatePostView extends GetView<CreatePostController> {
               ),
               Center(
                 child: Obx(() => controller.image.value != null
-                    ? Container(
-                        child: ClipRRect(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(6.0)),
-                            child: Image.file(
-                              controller.image.value!,
-                              fit: BoxFit.fill,
-                            )))
+                    ? ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(6.0)),
+                        child: Image.file(
+                          controller.image.value!,
+                          fit: BoxFit.fill,
+                        ))
                     : const Text('لم يتم اختيار صورة')),
               ),
               const SizedBox(height: 20),

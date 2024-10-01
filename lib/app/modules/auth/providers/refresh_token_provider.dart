@@ -22,7 +22,6 @@ class RefreshProvider extends GetConnect {
     );
 
     if (response.status.hasError) {
-      print('Failed to refresh token: ${response.statusText}');
       return null;
     } else {
       final responseData = response.body as Map<String, dynamic>;

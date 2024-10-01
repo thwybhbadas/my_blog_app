@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:my_blog_app/app/constants/conatans.dart';
 import 'package:my_blog_app/app/modules/auth/controllers/controllers.dart';
 import 'package:my_blog_app/app/modules/auth/widgets/widgets.dart';
-import 'package:my_blog_app/app/routes/routes.dart';
 
 class SignupView extends GetView<SignupController>  {
   const SignupView({super.key});

@@ -16,15 +16,20 @@ class TextStyleConst{
       decoration: TextDecoration.none
       );
   static TextStyle hintTextStyle(Color color) => GoogleFonts.notoKufiArabic(
-        fontSize: 17,
-        color: color,
-        fontWeight: FontWeight.w600,
-      decoration: TextDecoration.none
+        fontSize: 14,
+        color:color,
+        // fontWeight: FontWeight.w600,
+      // decoration: TextDecoration.none
       );
   static TextStyle forgotTextStyle(Color color, double fontSize) => GoogleFonts.notoKufiArabic(
         color: color,
         fontSize: fontSize,
         fontWeight: FontWeight.w600,
+      decoration: TextDecoration.none
+      );
+       static TextStyle smallTextStyle(Color color,double fontSize) => GoogleFonts.notoKufiArabic(
+        color: color,
+        fontSize: fontSize,
       decoration: TextDecoration.none
       );
 }

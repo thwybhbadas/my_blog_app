@@ -33,5 +33,11 @@ class OnboardingController extends GetxController {
       Get.offAllNamed(Routes.SIGNIN);
     }
   }
+   void next(){
+  currentPage++;
+  }
+  void back(){
+  currentPage--;
+  }
 }
 

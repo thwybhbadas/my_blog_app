@@ -1,11 +1,14 @@
 import 'package:get/get.dart';
 import 'package:my_blog_app/app/modules/create_post/bindings/create_post_binding.dart';
 import 'package:my_blog_app/app/modules/create_post/views/create_post_view.dart';
+import 'package:my_blog_app/app/modules/home/models/all_posts_respons_model.dart';
+import 'package:my_blog_app/app/modules/home/views/post_detail_view.dart';
 import 'package:my_blog_app/app/modules/profile/views/all_profiles_view.dart';
 import 'package:my_blog_app/app/modules/profile/views/followers_list_page.dart';
 import 'package:my_blog_app/app/modules/profile/views/liked_posts_page.dart';
 import 'package:my_blog_app/app/modules/profile/views/my_posts_view.dart';
 import 'package:my_blog_app/app/modules/profile/views/saved_posts_page.dart';
+import 'package:my_blog_app/app/modules/profile/views/settings_view.dart';
 import '../modules/auth/bindings/bindings.dart';
 import '../modules/auth/views/views.dart';
 import '../modules/home/bindings/bindings.dart';
@@ -30,7 +33,7 @@ class AppPages {
     // Home
     GetPage(
       name: _Paths.HOME,
-      page: () => HomeView(),
+      page: () => const HomeView(),
       binding: HomeBinding(),
     ),
     // Auth
@@ -41,17 +44,17 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SIGNUP,
-      page: () => SignupView(),
+      page: () => const SignupView(),
       binding: AuthBinding(),
     ),
       GetPage(
       name: _Paths.FOLLOWERS,
-      page: () => FollowersListPage(),
+      page: () => const FollowersListPage(),
       binding: ProfileBinding(),
     ),
     GetPage(
       name: _Paths.PHONE_VERIFICATION,
-      page: () => PhoneVerificationView(),
+      page: () => const PhoneVerificationView(),
       binding: AuthBinding(),
     ),
     GetPage(
@@ -71,7 +74,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ROOT,
-      page: () => RootView(),
+      page: () => const RootView(),
       binding: RootBinding(),
     ),
     GetPage(
@@ -81,12 +84,12 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.GETALLPOST,
-      page: () => AllProfilesView(),
+      page: () => const AllProfilesView(),
       binding: ProfileBinding(),
     ),
      GetPage(
       name: _Paths.MYPOSTS,
-      page: () => MyPostsView(),
+      page: () => const MyPostsView(),
       binding: ProfileBinding(),
     ),
     GetPage(
@@ -96,12 +99,17 @@ class AppPages {
     ),
      GetPage(
       name: _Paths.LIKEDPOSTS,
-      page: () =>  LikedPostsPage(),
+      page: () =>  const LikedPostsPage(),
       binding: ProfileBinding(),
     ),
      GetPage(
       name: _Paths.SAVEDPOSTS,
-      page: () =>  SavedPostsPage(),
+      page: () =>  const SavedPostsPage(),
+      binding: ProfileBinding(),
+    ),
+     GetPage(
+      name: _Paths.SETTINGS,
+      page: () =>  const SettingsView(),
       binding: ProfileBinding(),
     ),
     

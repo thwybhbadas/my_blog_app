@@ -20,9 +20,6 @@ class AccountController extends GetxController {
     super.onClose();
   }
 
-
-  
-
   void signout() 
   {
     storage.erase();

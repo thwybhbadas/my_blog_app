@@ -14,82 +14,137 @@ class PhoneVerificationView extends GetView<PhoneVerificationController> {
       backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 70),
-                  child: Center(
-                    child: Column(
-                      children: [
-                        Text(
-                          'إرسال كود التحقق',
-                          style: TextStyleConst.boldTextStyle(Colors.black, 30),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        // Text(
-                          
-                        //   style:
-                        //       TextStyleConst.mediumTextStyle(Colors.black, 20),
-                        // ),
-                      ],
+          child:Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List.generate(
+                6,
+                (index) => SizedBox(
+                  width: 40,
+                  child: TextField(
+                    controller: controller.verificationControllers[index],
+                    textAlign: TextAlign.center,
+                    keyboardType: TextInputType.number,
+                    maxLength: 1,
+                    decoration: InputDecoration(
+                      counterText: "", // إخفاء العداد
+                      border: OutlineInputBorder(),
                     ),
                   ),
                 ),
-
-                Text(
-                  'كود التحقق',
-                  style: TextStyleConst.mediumTextStyle(Colors.black, 16),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-
-                TextFormField(
-                  controller: controller.codeController,
-                  decoration: const InputDecoration(
-                    // labelText: 'كلمة المرور',
-                    // hintText: '*********',
-                    fillColor: AppColors.secondaryColor,
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color(0xffd9d9d9), width: 1.0),
-                      borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color(0xffd9d9d9), width: 1.0),
-                        borderRadius: BorderRadius.all(Radius.circular(6.0))),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'كلمة المرور مطلوبة';
-                    }
-                    return null;
-                  },
-                ),
-
-                const SizedBox(
-                  height: 20,
-                ),
-                // SignIn Button
-                MainBtnWidget(
+              ),
+            ),
+            SizedBox(height: 20),
+            Obx(() => Text(
+              "الوقت المتبقي: ${controller.timer.value} ث",
+              style: TextStyle(fontSize: 20),
+            )),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                if (!controller.isTimerRunning.value) {
+                  controller.startTimer();
+                }
+              },
+              child: Text("إعادة إرسال الكود"),
+            ),
+            SizedBox(height: 20),
+            Obx(()=>
+                 MainBtnWidget(
                     color: AppColors.primaryColore,
                     onPressed: () {
-                      controller.submitVerificationCode();
-                      print('done');
+                       controller.submitVerificationCode();
+                      // print('done;');
                     },
                     text: Text(
                       "إرسال".tr,
                       style: TextStyleConst.mediumTextStyle(
                           AppColors.whiteTextColor, 20),
                     ),
-                  ),
+                  ),)
+          ],
+        ),
+      ),
+          //  Padding(
+          //   padding: const EdgeInsets.all(20),
+          //   child: Column(
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: [
+          //       Padding(
+          //         padding: const EdgeInsets.symmetric(vertical: 70),
+          //         child: Center(
+          //           child: Column(
+          //             children: [
+          //               Text(
+          //                 'إرسال كود التحقق',
+          //                 style: TextStyleConst.boldTextStyle(Colors.black, 30),
+          //               ),
+          //               const SizedBox(
+          //                 height: 10,
+          //               ),
+          //               // Text(
+                          
+          //               //   style:
+          //               //       TextStyleConst.mediumTextStyle(Colors.black, 20),
+          //               // ),
+          //             ],
+          //           ),
+          //         ),
+          //       ),
+
+          //       Text(
+          //         'كود التحقق',
+          //         style: TextStyleConst.mediumTextStyle(Colors.black, 16),
+          //       ),
+          //       const SizedBox(
+          //         height: 10,
+          //       ),
+
+          //       TextFormField(
+          //         controller: controller.codeController,
+          //         decoration: const InputDecoration(
+          //           // labelText: 'كلمة المرور',
+          //           // hintText: '*********',
+          //           fillColor: AppColors.secondaryColor,
+          //           filled: true,
+          //           border: OutlineInputBorder(
+          //             borderSide:
+          //                 BorderSide(color: Color(0xffd9d9d9), width: 1.0),
+          //             borderRadius: BorderRadius.all(Radius.circular(6.0)),
+          //           ),
+          //           enabledBorder: OutlineInputBorder(
+          //               borderSide:
+          //                   BorderSide(color: Color(0xffd9d9d9), width: 1.0),
+          //               borderRadius: BorderRadius.all(Radius.circular(6.0))),
+          //         ),
+          //         validator: (value) {
+          //           if (value == null || value.isEmpty) {
+          //             return 'كلمة المرور مطلوبة';
+          //           }
+          //           return null;
+          //         },
+          //       ),
+
+          //       const SizedBox(
+          //         height: 20,
+          //       ),
+          //       // SignIn Button
+          //       MainBtnWidget(
+          //           color: AppColors.primaryColore,
+          //           onPressed: () {
+          //             controller.submitVerificationCode();
+          //             print('done');
+          //           },
+          //           text: Text(
+          //             "إرسال".tr,
+          //             style: TextStyleConst.mediumTextStyle(
+          //                 AppColors.whiteTextColor, 20),
+          //           ),
+          //         ),
                 
                 // Obx(()=>
                 //  MainBtnWidget(
@@ -104,9 +159,9 @@ class PhoneVerificationView extends GetView<PhoneVerificationController> {
                 //           AppColors.whiteTextColor, 20),
                 //     ),
                 //   ),)
-              ],
-            ),
-          ),
+          //     ],
+          //   ),
+          // ),
         ),
       ),
     );

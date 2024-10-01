@@ -5,16 +5,16 @@ class SigninResponseModel {
   SigninResponseModel({this.data, this.message});
 
   SigninResponseModel.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
     message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
-    data['message'] = this.message;
+    data['message'] = message;
     return data;
   }
 }
@@ -37,12 +37,12 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['phone'] = this.phone;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    data['token'] = this.token;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['phone'] = phone;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['token'] = token;
     return data;
   }
 }

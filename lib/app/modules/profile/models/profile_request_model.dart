@@ -1,3 +1,4 @@
+
 class ProfileRequestModel {
   final String username;
   final String name;
@@ -8,7 +9,7 @@ class ProfileRequestModel {
     required this.name,
     required this.email,
   });
-
+ 
   factory ProfileRequestModel.fromJson(Map<String, dynamic> json) {
     return ProfileRequestModel(
       username: json['username'],

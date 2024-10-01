@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_blog_app/app/constants/conatans.dart';
 
 class OnboardingWidget extends StatelessWidget {
   
@@ -14,16 +15,16 @@ final String imagePath;
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(imagePath),
+          Image.asset(imagePath,height: 350,),
           SizedBox(height: 16),
           Text(
             title,
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: TextStyleConst.boldTextStyle(AppColors.blackTextColor, 25),
           ),
           SizedBox(height: 8),
           Text(
             description,
-            style: TextStyle(fontSize: 16),
+          style: TextStyleConst.mediumTextStyle(AppColors.blackTextColor, 15),
             textAlign: TextAlign.center,
           ),
         ],

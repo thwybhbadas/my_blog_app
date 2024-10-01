@@ -1,9 +1,7 @@
 import 'dart:io';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:my_blog_app/app/modules/create_post/model/post_create_model.dart';
 import 'package:my_blog_app/app/modules/create_post/provider/create_post_provider.dart';
-import 'package:my_blog_app/app/modules/home/models/all_posts_respons_model.dart';
 import 'package:my_blog_app/app/routes/routes.dart';
 
 class CreatePostController extends GetxController {

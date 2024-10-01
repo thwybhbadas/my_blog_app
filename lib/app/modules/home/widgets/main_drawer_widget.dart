@@ -1,14 +1,7 @@
-/*
- * Copyright (c) 2020 .
- */
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:my_blog_app/app/constants/colors.dart';
 import 'package:my_blog_app/app/constants/conatans.dart';
-import 'package:my_blog_app/app/modules/auth/widgets/main_btn_widget.dart';
-import 'package:my_blog_app/app/modules/home/controllers/controllers.dart';
 import 'package:my_blog_app/app/modules/profile/controllers/profile_controller.dart';
 import 'package:my_blog_app/app/modules/profile/models/profile_respons_model.dart';
 import 'package:my_blog_app/app/modules/root/controllers/root_controller.dart';
@@ -36,13 +29,7 @@ class MainDrawerWidget extends StatelessWidget {
               },
             ),
 
-            // DrawerLinkWidget(
-            //   icon: Icons.folder_special_outlined,
-            //   text: "Specialities".tr,
-            //   onTap: (e) {
-            //     Get.offAndToNamed(Routes.SPECIALITIES);
-            //   },
-            // ),
+          
             DrawerLinkWidget(
               icon: Icons.assignment_outlined,
               text: "منشوراتي",
@@ -111,16 +98,14 @@ class ProfileDetailsPage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 25,
+          const CircleAvatar(
+            radius: 30,
             backgroundColor: AppColors.secondaryColor,
-            child: profile == null
-                ? const Icon(
-                    Icons.person, // Icon to display
-                    color: Colors.white, // Color of the icon
-                    size: 40,
-                  )
-                : null,
+            child: Icon(
+              Icons.person,
+              color: Colors.white,
+              size: 35,
+            ),
           ),
           const SizedBox(width: 5),
           if (profile != null) ...[
@@ -138,34 +123,18 @@ class ProfileDetailsPage extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(width: 30),
             const Icon(
               Icons.arrow_forward_ios,
               size: 18,
               color: AppColors.primaryColore,
             ),
           ] else ...[
-            // ElevatedButton(
-            //   onPressed: () {
-            //     Get.toNamed(Routes.PROFILE);
-            //   },
-            //   style: ElevatedButton.styleFrom(
-            //     backgroundColor: Colors.blueAccent,
-            //     padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(10),
-            //     ),
-            //   ),
-            //   child: const Text(
-            //     'إنشاء الملف الشخصي',
-            //     style: TextStyle(fontSize: 18, color: Colors.white),
-            //   ),
-            // ),
-
             MaterialButton(
               onPressed: () {
                 Get.toNamed(Routes.PROFILE);
               },
-              padding: EdgeInsets.symmetric(horizontal: 9, vertical: 9),
+              padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 9),
               color: AppColors.primaryColore, disabledElevation: 0,
               // disabledColor: Get.theme.focusColor,
               shape: RoundedRectangleBorder(
@@ -178,7 +147,6 @@ class ProfileDetailsPage extends StatelessWidget {
               ),
             ),
           ],
-          // const SizedBox(height: 16),
         ],
       ),
     );

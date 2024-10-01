@@ -35,19 +35,27 @@ class FollowersListPage extends StatelessWidget {
             final follower = profileController.followerProfiles[index];
 
             return ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Colors.blueAccent,
+              leading: const CircleAvatar(
+                radius: 30,
+                backgroundColor: AppColors.secondaryColor,
                 child: Icon(
                   Icons.person,
                   color: Colors.white,
+                  size: 25,
                 ),
               ),
-              title: Text(follower?.username ?? 'Unknown User'),
-              subtitle: Text(follower?.name ?? 'No Name'),
+              title: Text(follower?.username ?? 'مستخدم غير معروف',
+               style: TextStyleConst.smallTextStyle(
+              AppColors.blackTextColor,14
+            ),),
+              subtitle: Text(follower?.name ?? 'لا يوجد اسم',
+               style: TextStyleConst.smallTextStyle(
+              AppColors.blackTextColor,14
+            ),),
               onTap: () {
-                if (follower != null) {
-                  // Get.to(() => FollowerProfilePage(userId: follower.id));
-                }
+                // if (follower != null) {
+                //   Get.to(() => FollowerProfilePage(userId: follower.id));
+                // }
               },
             );
           },

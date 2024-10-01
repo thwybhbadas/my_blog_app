@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:my_blog_app/app/modules/auth/models/signin_request_model.dart';
 import 'package:my_blog_app/app/modules/auth/providers/providers.dart';
+import 'package:my_blog_app/app/modules/auth/widgets/diplay_snack_bar.dart';
 import 'package:my_blog_app/app/routes/routes.dart';
 
 class AuthController extends GetxController {
@@ -27,15 +28,10 @@ class AuthController extends GetxController {
     super.onInit();
     // Check if already signed in
     if (storage.read("is_signedin") == true) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-      Get.offAllNamed(Routes.ROOT);
-    });
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.offAllNamed(Routes.ROOT);
+      });
     }
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
   }
 
   @override
@@ -46,6 +42,11 @@ class AuthController extends GetxController {
   }
 
   void signin() {
+    if (phoneController.text.trim().isEmpty) {
+      DisplaySnackBar.displaySnackBar("الرجاء إدخال رقم الهاتف");
+    } else if (passwordController.text.trim().isEmpty) {
+      DisplaySnackBar.displaySnackBar("الرجاء إدخال كلمة مرور");
+    }
     _isLoading.value = true;
     SigninRequestModel signinModel = SigninRequestModel(
         phone: phoneController.text, password: passwordController.text);
@@ -53,15 +54,16 @@ class AuthController extends GetxController {
       if (response.isOk) {
         storage.write("jwt_token", response.body?.data?.token);
         storage.write("is_signedin", true);
+        storage.write("user_id", response.body?.data?.id);
+
         Get.offAllNamed(Routes.ROOT);
       } else {
-       
-        Get.snackbar('خطأ', response.body?.message ?? 'يرجى الإتصال بالإنترنت');
+        Get.snackbar('خطأ', response.body?.message ?? 'Unknown error');
       }
-      _isLoading.value = false; 
+      _isLoading.value = false;
     }).catchError((error) {
       Get.snackbar('خطأ', error.toString());
-      _isLoading.value = false; 
+      _isLoading.value = false;
     });
   }
 

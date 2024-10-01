@@ -1,4 +1,4 @@
-class Profiles {
+class AllProfilesModelResponse {
   final int id;
   final String name;
   final String email;
@@ -9,7 +9,7 @@ class Profiles {
   final String updatedAt;
   final User user;
 
-  Profiles(
+  AllProfilesModelResponse(
       {required this.id,
       required this.name,
       required this.email,
@@ -20,8 +20,8 @@ class Profiles {
       required this.updatedAt,
       required this.user});
 
-  factory Profiles.fromJson(Map<String, dynamic> json) {
-    return Profiles(
+  factory AllProfilesModelResponse.fromJson(Map<String, dynamic> json) {
+    return AllProfilesModelResponse(
       name: json['name'],
       id: json['id'],
       email: json['email'],

@@ -3,17 +3,17 @@ import 'package:get/get.dart';
 import 'package:my_blog_app/app/constants/conatans.dart';
 import 'package:my_blog_app/app/modules/profile/controllers/profile_controller.dart';
 
-class AllProfilesView extends GetView<ProfileController> {
-  const AllProfilesView({super.key});
+class FollowingListPage extends StatelessWidget {
+  const FollowingListPage({super.key});
 
   @override
-Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     final ProfileController profileController = Get.find();
 
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'ألمشتركون',
+          'المتابعين',
           style: TextStyleConst.boldTextStyle(AppColors.primaryColore, 25),
         ),
         centerTitle: true,
@@ -25,18 +25,18 @@ Widget build(BuildContext context) {
           return const Center(child: CircularProgressIndicator());
         }
 
-        if (profileController.all_Profiles.isEmpty) {
-          return const Center(child: Text('لا يوجد متابعون.'));
+        if (profileController.followingProfiles.isEmpty) {
+          return const Center(child: Text('لا يوجد متابعين.'));
         }
 
         return ListView.builder(
-          itemCount: profileController.all_Profiles.length,
+          itemCount: profileController.followingProfiles.length,
           itemBuilder: (context, index) {
-            final profile = profileController.all_Profiles[index];
+            final following = profileController.followingProfiles[index];
 
             return ListTile(
               leading: const CircleAvatar(
-                radius: 20,
+                radius: 30,
                 backgroundColor: AppColors.secondaryColor,
                 child: Icon(
                   Icons.person,
@@ -44,8 +44,14 @@ Widget build(BuildContext context) {
                   size: 25,
                 ),
               ),
-              title: Text(profile?.username ?? 'مستخدم غير معروف'),
-              subtitle: Text(profile?.name ?? 'لا يوجد اسم'),
+              title: Text(following?.username ?? 'مستخدم غير معروف',
+               style: TextStyleConst.smallTextStyle(
+              AppColors.blackTextColor,14
+            ),),
+              subtitle: Text(following?.name ?? 'لا يوجد اسم',
+               style: TextStyleConst.smallTextStyle(
+              AppColors.blackTextColor,14
+            ),),
               onTap: () {
                 // if (follower != null) {
                 //   Get.to(() => FollowerProfilePage(userId: follower.id));
