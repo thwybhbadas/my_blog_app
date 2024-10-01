@@ -187,7 +187,7 @@ class ProfileDetailsPage extends GetView<ProfileController> {
         onPressed: () {
           controller.pickImage(); // اختيار الصورة
         },
-        icon: Icon(Icons.add_a_photo_rounded),
+        icon: const Icon(Icons.add_a_photo_rounded),
         color: Colors.white, // يمكنك تغيير لون الأيقونة
       ),
     ),
