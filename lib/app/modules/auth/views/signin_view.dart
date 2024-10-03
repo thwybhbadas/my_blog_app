@@ -15,12 +15,12 @@ class SigninView extends GetView<AuthController> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 70),
+                  padding: const EdgeInsets.symmetric(vertical: 70),
                   child: Center(
                     child: Column(
                       children: [
@@ -147,7 +147,7 @@ class SigninView extends GetView<AuthController> {
                         AppColors.whiteTextColor, 20),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(

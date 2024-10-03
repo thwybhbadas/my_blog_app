@@ -16,12 +16,12 @@ final String imagePath;
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(imagePath,height: 350,),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Text(
             title,
           style: TextStyleConst.boldTextStyle(AppColors.blackTextColor, 25),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             description,
           style: TextStyleConst.mediumTextStyle(AppColors.blackTextColor, 15),

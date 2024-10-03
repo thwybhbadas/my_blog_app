@@ -1,5 +1,4 @@
 
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,7 +35,7 @@ class PhoneVerificationController extends GetxController {
     isTimerRunning.value = true;
     timer.value = 60;
 
-    Future.delayed(Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 1), () {
       if (timer.value > 0) {
         timer.value--;
         startTimer(); // إعادة تشغيل العداد

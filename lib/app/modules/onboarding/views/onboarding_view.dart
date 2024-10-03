@@ -5,11 +5,12 @@ import 'package:my_blog_app/app/constants/conatans.dart';
 import 'package:my_blog_app/app/modules/onboarding/controllers/controllers.dart';
 import 'package:my_blog_app/app/modules/onboarding/widgets/widgets.dart';
 
-
 class OnboardingView extends GetView<OnboardingController> {
   const OnboardingView({super.key});
   @override
   Widget build(BuildContext context) {
+    final PageController pageController = PageController();
+
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: Obx(() {
@@ -41,8 +42,7 @@ class OnboardingView extends GetView<OnboardingController> {
             children: [
               Expanded(
                 child: PageView(
-                  controller:
-                      PageController(initialPage: controller.currentPage.value),
+                  controller: pageController,
                   onPageChanged: (index) =>
                       controller.currentPage.value = index,
                   children: [
@@ -64,19 +64,53 @@ class OnboardingView extends GetView<OnboardingController> {
                 ),
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(3, (index) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    height: 10,
+                    width: 10,
+                    decoration: BoxDecoration(
+                      color: controller.currentPage.value == index
+                          ? AppColors.primaryColore
+                          : AppColors.secondaryColor,
+                      shape: BoxShape.circle,
+                    ),
+                  );
+                }),
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
-                    onPressed: controller.back,
-                    child: Text('Back'),
+                    onPressed: controller.currentPage.value > 0
+                        ? () {
+                            controller.back();
+                            pageController.previousPage(
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.ease,
+                            );
+                          }
+                        : null,
+                    child: controller.currentPage.value > 0
+                        ? const Text('Back'):Text(''),
                   ),
                   TextButton(
                     onPressed: controller.finished,
-                    child: Text('Skip'),
+                    child:  controller.currentPage.value < 2
+                        ?const Text('Skip'):const Text(''),
                   ),
                   TextButton(
-                    onPressed: controller.next,
-                    child: Text('Next'),
+                  onPressed: controller.currentPage.value < 2
+                        ? () {
+                            controller.next();
+                            pageController.nextPage(
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.ease,
+                            );
+                          }
+                        : null,
+                    child:const Text('Next'),
                   ),
                 ],
               ),
@@ -84,7 +118,6 @@ class OnboardingView extends GetView<OnboardingController> {
           ),
         ]);
       }),
-     
     );
   }
 }

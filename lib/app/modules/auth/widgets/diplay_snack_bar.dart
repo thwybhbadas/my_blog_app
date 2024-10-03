@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_blog_app/app/constants/colors.dart';
 import 'package:my_blog_app/app/constants/conatans.dart';
 
 class DisplaySnackBar {

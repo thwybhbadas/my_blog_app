@@ -70,7 +70,6 @@ class ProfileController extends GetxController {
       if (fetchedProfile != null) {
         profileResponse.value = fetchedProfile;
         hasProfile(true);
-        print(profileResponse.value);
       } else {
         hasProfile(false);
       }
@@ -83,7 +82,6 @@ class ProfileController extends GetxController {
     isLoading(true);
     try {
       final response = await profileProvider.createProfile(profileData);
-      print(response.body);
       if (response.isOk) {
         fetchProfileByUserId(storage.read('user_id'));
         Get.snackbar('ناجح', "تم انشاء البروفايل بنجاح");
@@ -147,8 +145,6 @@ class ProfileController extends GetxController {
     try {
       final posts = await profileProvider.fetchLikedPosts();
       likedPosts.value = posts;
-    } catch (e) {
-      print('Error fetching liked posts: $e');
     } finally {
       isLoading(false);
     }
@@ -159,8 +155,6 @@ class ProfileController extends GetxController {
     try {
       final posts = await profileProvider.fetchSavePosts();
       savedPosts.value = posts;
-    } catch (e) {
-      print('Error fetching liked posts: $e');
     } finally {
       isLoading(false);
     }
@@ -176,8 +170,6 @@ class ProfileController extends GetxController {
         final followerProfile = await profileProvider.fetchProfileByUserId(id);
         followersProfiles.add(followerProfile);
       }
-    } catch (e) {
-      print('Error fetching follower posts: $e');
     } finally {
       isLoading(false);
     }
@@ -192,8 +184,6 @@ class ProfileController extends GetxController {
         final followingProfile = await profileProvider.fetchProfileByUserId(id);
         followingProfiles.add(followingProfile);
       }
-    } catch (e) {
-      print('$e');
     } finally {
       isLoading(false);
     }
@@ -204,8 +194,6 @@ class ProfileController extends GetxController {
     try {
       final allProfiles = await profileProvider.fetchAllProfiles();
       all_Profiles.assignAll(allProfiles);
-    } catch (e) {
-      print('Error fetching liked posts: $e');
     } finally {
       isLoading(false);
     }
@@ -219,7 +207,6 @@ class ProfileController extends GetxController {
           .toList();
       posts.assignAll(userPosts);
     } catch (e) {
-      print("Failed to load posts: $e");
     }
   }
    Future<void> deletePost(int id) async {
@@ -230,12 +217,9 @@ class ProfileController extends GetxController {
       if (response.statusCode == 200) {
         // حذف المنشور من القائمة 
         posts.removeWhere((post) => post.id == id);
-        print("Post deleted successfully");
       } else {
-        print("Failed to delete post: ${response.statusCode}");
       }
     } catch (e) {
-      print("Error occurred while deleting post: $e");
     }
   }
 

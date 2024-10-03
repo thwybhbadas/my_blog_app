@@ -6,10 +6,6 @@ class SplashController extends GetxController {
   final storage = GetStorage();
 
   // final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
   @override
   void onReady() {
@@ -29,10 +25,6 @@ class SplashController extends GetxController {
 
 
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   // void increment() => count.value++;
 }

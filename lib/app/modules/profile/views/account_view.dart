@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:my_blog_app/app/constants/conatans.dart';
-import 'package:my_blog_app/app/modules/home/models/all_posts_respons_model.dart';
 import 'package:my_blog_app/app/modules/profile/controllers/profile_controller.dart';
 import 'package:my_blog_app/app/modules/profile/models/profile_respons_model.dart';
 import 'package:my_blog_app/app/modules/profile/views/followers_list_page.dart';
 import 'package:my_blog_app/app/modules/profile/views/following_list_page.dart';
-import 'package:my_blog_app/app/modules/profile/views/my_posts_view.dart';
 import 'package:my_blog_app/app/modules/profile/views/profile_view.dart';
 import 'package:my_blog_app/app/routes/app_pages.dart';
 import '../widgets/account_link_widget.dart';
@@ -136,6 +134,17 @@ class AccountView extends GetView<ProfileController> {
                         ),
                         AccountLinkWidget(
                           icon: const Icon(
+                            Icons.favorite_outline,
+                            color: AppColors.primaryColore,
+                          ),
+                          text: "الترحيب",
+                          onTap: (e) {
+                            Get.toNamed(Routes.ONBOARDING);
+                          },
+                        ),
+                        // Get.offAllNamed(Routes.ONBOARDING);
+                        AccountLinkWidget(
+                          icon: const Icon(
                             Icons.logout,
                             color: AppColors.primaryColore,
                           ),
@@ -237,7 +246,7 @@ class ProfileDetailsPage extends GetView<ProfileController> {
                       style: TextStyleConst.smallTextStyle(
                           AppColors.primaryColore, 16),
                     )),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 InkWell(
@@ -250,7 +259,7 @@ class ProfileDetailsPage extends GetView<ProfileController> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Row(
@@ -260,7 +269,7 @@ class ProfileDetailsPage extends GetView<ProfileController> {
                       style: TextStyleConst.smallTextStyle(
                           AppColors.primaryColore, 16),
                     )),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 InkWell(

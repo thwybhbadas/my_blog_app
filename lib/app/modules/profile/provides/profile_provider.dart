@@ -65,8 +65,6 @@ Future<List<ProfileResponseModel>> fetchAllProfiles() async {
           );
 
           if (userProfile != null) {
-            print("Profile found");
-            print(userProfile['id']);
             storage.write("profile_id", userProfile['id']);
             return ProfileResponseModel.fromJson(userProfile);
           }

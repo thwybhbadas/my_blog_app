@@ -36,8 +36,6 @@ class HomeController extends GetxController {
       isLoading(true);
       var postsResult = await provider.fetchPosts();
       posts.assignAll(postsResult);
-    } catch (e) {
-      print("Failed to load posts: $e");
     } finally {
       isLoading(false);
     }
@@ -48,7 +46,6 @@ class HomeController extends GetxController {
       var likesResult = await provider.fetchLikes();
       likedPosts.assignAll(likesResult);
     } catch (e) {
-      print("Failed to load likes: $e");
     }
   }
 
@@ -57,7 +54,6 @@ class HomeController extends GetxController {
       var favoritesResult = await provider.fetchFavorites();
       favoritePosts.assignAll(favoritesResult);
     } catch (e) {
-      print("Failed to load favorites: $e");
     }
   }
 
@@ -66,7 +62,6 @@ class HomeController extends GetxController {
       var followsResult = await provider.fetchFollows();
       followedUsers.assignAll(followsResult);
     } catch (e) {
-      print("Failed to load follows: $e");
     }
   }
 

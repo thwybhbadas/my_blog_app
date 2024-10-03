@@ -12,6 +12,8 @@ import 'drawer_link_widget.dart';
 
 class MainDrawerWidget extends StatelessWidget {
   final ProfileController controller = Get.find();
+
+   MainDrawerWidget({super.key});
   @override
   Widget build(BuildContext context) {
     return Drawer(

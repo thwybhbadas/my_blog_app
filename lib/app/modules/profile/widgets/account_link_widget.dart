@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_blog_app/app/constants/colors.dart';
 import 'package:my_blog_app/app/constants/conatans.dart';
 
 class AccountLinkWidget extends StatelessWidget {
@@ -8,11 +7,11 @@ class AccountLinkWidget extends StatelessWidget {
   final ValueChanged<void>? onTap;
 
   const AccountLinkWidget({
-    Key? key,
+    super.key,
     this.icon,
     this.text,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,7 @@ class AccountLinkWidget extends StatelessWidget {
         child: Row(
           children: [
             icon!,
-            SizedBox(width: 12,),
+            const SizedBox(width: 12,),
             // Container(
             //   margin: const EdgeInsets.symmetric(horizontal: 12),
             //   width: 1,

@@ -9,7 +9,7 @@ class PostDetailView extends StatelessWidget {
   final Post post;
   final storage = GetStorage();
   final HomeController controller = Get.find();
-  PostDetailView({Key? key, required this.post}) : super(key: key);
+  PostDetailView({super.key, required this.post});
 
   @override
   Widget build(BuildContext context) {

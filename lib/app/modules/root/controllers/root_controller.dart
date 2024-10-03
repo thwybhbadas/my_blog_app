@@ -10,20 +10,8 @@ class RootController extends GetxController {
 
   int get selectedIndex => _selectedIndex.value;
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   void onTap(int index) {
     _selectedIndex.value = index;

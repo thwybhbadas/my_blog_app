@@ -30,7 +30,7 @@ class PhoneVerificationView extends GetView<PhoneVerificationController> {
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.number,
                     maxLength: 1,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       counterText: "", // إخفاء العداد
                       border: OutlineInputBorder(),
                     ),
@@ -38,21 +38,21 @@ class PhoneVerificationView extends GetView<PhoneVerificationController> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Obx(() => Text(
               "الوقت المتبقي: ${controller.timer.value} ث",
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
             )),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 if (!controller.isTimerRunning.value) {
                   controller.startTimer();
                 }
               },
-              child: Text("إعادة إرسال الكود"),
+              child: const Text("إعادة إرسال الكود"),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Obx(()=>
                  MainBtnWidget(
                     color: AppColors.primaryColore,

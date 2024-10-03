@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 import 'package:my_blog_app/app/modules/create_post/bindings/create_post_binding.dart';
 import 'package:my_blog_app/app/modules/create_post/views/create_post_view.dart';
-import 'package:my_blog_app/app/modules/home/models/all_posts_respons_model.dart';
-import 'package:my_blog_app/app/modules/home/views/post_detail_view.dart';
 import 'package:my_blog_app/app/modules/profile/views/all_profiles_view.dart';
 import 'package:my_blog_app/app/modules/profile/views/followers_list_page.dart';
 import 'package:my_blog_app/app/modules/profile/views/liked_posts_page.dart';

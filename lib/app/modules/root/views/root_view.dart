@@ -107,7 +107,7 @@ class RootView extends GetView<RootController> {
                             : null,
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(Icons.home_outlined)),
+                      child: const Icon(Icons.home_outlined)),
                   label: 'الصفحة الرئيسية'),
               BottomNavigationBarItem(
                   icon: Container(
@@ -118,7 +118,7 @@ class RootView extends GetView<RootController> {
                             : null,
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(Icons.post_add)),
+                      child: const Icon(Icons.post_add)),
                   label: 'منشور جديد'),
               BottomNavigationBarItem(
                   icon: Container(
@@ -129,7 +129,7 @@ class RootView extends GetView<RootController> {
                             : null,
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(Icons.person_outline)),
+                      child: const Icon(Icons.person_outline)),
                   label: 'حسابي'),
             ],
           ),
