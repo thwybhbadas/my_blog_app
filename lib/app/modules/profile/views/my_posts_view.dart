@@ -12,15 +12,15 @@ class MyPostsView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-        title: Text(
-          'منشوراتي',
-          style: TextStyleConst.boldTextStyle(AppColors.primaryColore, 25),
-        ),
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        elevation: 0,
-      ),
+      //   appBar: AppBar(
+      //   title: Text(
+      //     'منشوراتي',
+      //     style: TextStyleConst.boldTextStyle(AppColors.primaryColore, 25),
+      //   ),
+      //   centerTitle: true,
+      //   automaticallyImplyLeading: false,
+      //   elevation: 0,
+      // ),
       body: Obx(
         () {
           if (controller.isLoading.value) {

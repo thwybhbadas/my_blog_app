@@ -16,10 +16,9 @@ import '../widgets/account_link_widget.dart';
 
 class AccountView extends GetView<ProfileController> {
   final storage = GetStorage();
-    // final Post post;
+  // final Post post;
 
-  
-  AccountView( {
+  AccountView({
     super.key,
   });
 
@@ -39,6 +38,7 @@ class AccountView extends GetView<ProfileController> {
             ),
             body: SingleChildScrollView(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Obx(() {
                     if (controller.isLoading.value) {
@@ -48,22 +48,25 @@ class AccountView extends GetView<ProfileController> {
                           profile: controller.profileResponse.value);
                     }
                   }),
+                  // Container(
+                  //   height: 700,
+                  //   child: Obx(
+                  //     () {
+                  //       if (controller.isLoading.value) {
+                  //         return const Center(
+                  //             child: CircularProgressIndicator());
+                  //       }
 
-      //             Obx(
-      //   () {
-      //     if (controller.isLoading.value) {
-      //       return const Center(child: CircularProgressIndicator());
-      //     }
-
-      //     return ListView.builder(
-      //       itemCount: controller.posts.length,
-      //       itemBuilder: (context, index) {
-      //         Post post = controller.posts[index];
-      //         return MyPostCard(post: post);
-      //       },
-      //     );
-      //   },
-      // ),
+                  //       return ListView.builder(
+                  //         itemCount: controller.posts.length,
+                  //         itemBuilder: (context, index) {
+                  //           Post post = controller.posts[index];
+                  //           return MyPostCard(post: post);
+                  //         },
+                  //       );
+                  //     },
+                  //   ),
+                  // ),
                   Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 15),
@@ -93,7 +96,7 @@ class AccountView extends GetView<ProfileController> {
                             // controller.myPosts();
                           },
                         ),
-                       
+
                         AccountLinkWidget(
                           icon: const Icon(
                             Icons.favorite_outline,
@@ -124,7 +127,7 @@ class AccountView extends GetView<ProfileController> {
                             Get.toNamed(Routes.ALLPROFILES);
                           },
                         ),
-                         AccountLinkWidget(
+                        AccountLinkWidget(
                           icon: const Icon(
                             Icons.favorite_outline,
                             color: AppColors.primaryColore,
@@ -139,7 +142,6 @@ class AccountView extends GetView<ProfileController> {
                             Icons.logout,
                             color: AppColors.primaryColore,
                           ),
-                          
                           text: "تسجيل الخروج",
                           onTap: (e) async {
                             Get.find<ProfileController>().signout();
@@ -237,7 +239,7 @@ class ProfileDetailsPage extends GetView<ProfileController> {
                       style: TextStyleConst.smallTextStyle(
                           AppColors.primaryColore, 16),
                     )),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 InkWell(
@@ -250,7 +252,7 @@ class ProfileDetailsPage extends GetView<ProfileController> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Row(
@@ -260,7 +262,7 @@ class ProfileDetailsPage extends GetView<ProfileController> {
                       style: TextStyleConst.smallTextStyle(
                           AppColors.primaryColore, 16),
                     )),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 InkWell(

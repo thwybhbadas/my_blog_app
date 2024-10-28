@@ -17,6 +17,8 @@ class ProfileController extends GetxController {
   var likedPosts = <LikePost>[].obs;
   var savedPosts = <LikePost>[].obs;
   var posts = <Post>[].obs;
+  var userPosts=<Post>[].obs;
+
   var followerProfiles = <ProfileResponseModel?>[].obs;
   var all_Profiles = <ProfileResponseModel?>[].obs;
   var currentPage = 1;
@@ -214,7 +216,7 @@ class ProfileController extends GetxController {
   Future<void> fetchPosts() async {
     try {
        var allPosts = await profileProvider.fetchPosts();
-      var userPosts = allPosts
+       userPosts.value = allPosts
           .where((post) => post.user.id == storage.read('user_id'))
           .toList();
       posts.assignAll(userPosts);
