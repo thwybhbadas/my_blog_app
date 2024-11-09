@@ -36,122 +36,138 @@ class AccountView extends GetView<ProfileController> {
               automaticallyImplyLeading: false,
               elevation: 0,
             ),
-            body: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Obx(() {
-                    if (controller.isLoading.value) {
-                      return const Center(child: CircularProgressIndicator());
-                    } else {
-                      return ProfileDetailsPage(
-                          profile: controller.profileResponse.value);
-                    }
-                  }),
-                  // Container(
-                  //   height: 700,
-                  //   child: Obx(
-                  //     () {
-                  //       if (controller.isLoading.value) {
-                  //         return const Center(
-                  //             child: CircularProgressIndicator());
-                  //       }
-
-                  //       return ListView.builder(
-                  //         itemCount: controller.posts.length,
-                  //         itemBuilder: (context, index) {
-                  //           Post post = controller.posts[index];
-                  //           return MyPostCard(post: post);
-                  //         },
-                  //       );
-                  //     },
-                  //   ),
-                  // ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 15),
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 20),
-                    decoration: const BoxDecoration(),
-                    child: Column(
-                      children: [
-                        AccountLinkWidget(
-                          icon: const Icon(
-                            Icons.person_outline,
-                            color: AppColors.primaryColore,
-                          ),
-                          text: "تعديل ملفي الشخصي",
-                          onTap: (e) {
-                            Get.toNamed(Routes.PROFILE);
-                          },
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Obx(() {
+                  if (controller.isLoading.value) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else {
+                    return ProfileDetailsPage(
+                        profile: controller.profileResponse.value);
+                  }
+                }),
+                Divider(),
+                SizedBox(
+              height: MediaQuery.of(context).size.height * 0.5, // استخدام نصف ارتفاع الشاشة
+                  child:
+                  // Obx(
+                  //   () {
+                  //     if (controller.isLoading.value) {
+                  //       return const Center(
+                  //           child: CircularProgressIndicator());
+                  //     }
+            
+                  //     return 
+                      GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3, // عدد الأعمدة
+                          crossAxisSpacing: 4.0,
+                          mainAxisSpacing: 4.0,
                         ),
-                        AccountLinkWidget(
-                          icon: const Icon(
-                            Icons.assignment_outlined,
-                            color: AppColors.primaryColore,
-                          ),
-                          text: "منشوراتي",
-                          onTap: (e) {
-                            Get.toNamed(Routes.MYPOSTS);
-                            // controller.myPosts();
-                          },
-                        ),
-
-                        AccountLinkWidget(
-                          icon: const Icon(
-                            Icons.favorite_outline,
-                            color: AppColors.primaryColore,
-                          ),
-                          text: "المفضلة",
-                          onTap: (e) {
-                            Get.toNamed(Routes.LIKEDPOSTS);
-                          },
-                        ),
-                        AccountLinkWidget(
-                          icon: const Icon(
-                            Icons.bookmark_border_outlined,
-                            color: AppColors.primaryColore,
-                          ),
-                          text: "المحفوظات",
-                          onTap: (e) {
-                            Get.toNamed(Routes.SAVEDPOSTS);
-                          },
-                        ),
-                        AccountLinkWidget(
-                          icon: const Icon(
-                            Icons.people_alt_outlined,
-                            color: AppColors.primaryColore,
-                          ),
-                          text: "جميع المشتركين",
-                          onTap: (e) {
-                            Get.toNamed(Routes.ALLPROFILES);
-                          },
-                        ),
-                        AccountLinkWidget(
-                          icon: const Icon(
-                            Icons.favorite_outline,
-                            color: AppColors.primaryColore,
-                          ),
-                          text: "الخصوصية وسياسة الاستخدام",
-                          onTap: (e) {
-                            Get.toNamed(Routes.LIKEDPOSTS);
-                          },
-                        ),
-                        AccountLinkWidget(
-                          icon: const Icon(
-                            Icons.logout,
-                            color: AppColors.primaryColore,
-                          ),
-                          text: "تسجيل الخروج",
-                          onTap: (e) async {
-                            Get.find<ProfileController>().signout();
-                          },
-                        ),
-                      ],
-                    ),
+                        itemCount: controller.posts.length,
+                        itemBuilder: (BuildContext context,int index) {
+                          Post post = controller.posts[index];
+                          return Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image:
+                                    NetworkImage('http://myblog.mobaen.com/storage/public/${post.image}'),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          );
+                          // MyPostCard(post: post);
+                        },
+                      )
+                 
                   ),
-                ],
-              ),
+               
+                // Container(
+                //   padding: const EdgeInsets.symmetric(
+                //       horizontal: 20, vertical: 15),
+                //   margin: const EdgeInsets.symmetric(
+                //       horizontal: 20, vertical: 20),
+                //   decoration: const BoxDecoration(),
+                //   child: Column(
+                //     children: [
+                //       AccountLinkWidget(
+                //         icon: const Icon(
+                //           Icons.person_outline,
+                //           color: AppColors.primaryColore,
+                //         ),
+                //         text: "تعديل ملفي الشخصي",
+                //         onTap: (e) {
+                //           Get.toNamed(Routes.PROFILE);
+                //         },
+                //       ),
+                //       AccountLinkWidget(
+                //         icon: const Icon(
+                //           Icons.assignment_outlined,
+                //           color: AppColors.primaryColore,
+                //         ),
+                //         text: "منشوراتي",
+                //         onTap: (e) {
+                //           Get.toNamed(Routes.MYPOSTS);
+                //           // controller.myPosts();
+                //         },
+                //       ),
+            
+                //       AccountLinkWidget(
+                //         icon: const Icon(
+                //           Icons.favorite_outline,
+                //           color: AppColors.primaryColore,
+                //         ),
+                //         text: "المفضلة",
+                //         onTap: (e) {
+                //           Get.toNamed(Routes.LIKEDPOSTS);
+                //         },
+                //       ),
+                //       AccountLinkWidget(
+                //         icon: const Icon(
+                //           Icons.bookmark_border_outlined,
+                //           color: AppColors.primaryColore,
+                //         ),
+                //         text: "المحفوظات",
+                //         onTap: (e) {
+                //           Get.toNamed(Routes.SAVEDPOSTS);
+                //         },
+                //       ),
+                //       AccountLinkWidget(
+                //         icon: const Icon(
+                //           Icons.people_alt_outlined,
+                //           color: AppColors.primaryColore,
+                //         ),
+                //         text: "جميع المشتركين",
+                //         onTap: (e) {
+                //           Get.toNamed(Routes.ALLPROFILES);
+                //         },
+                //       ),
+                //       AccountLinkWidget(
+                //         icon: const Icon(
+                //           Icons.favorite_outline,
+                //           color: AppColors.primaryColore,
+                //         ),
+                //         text: "الخصوصية وسياسة الاستخدام",
+                //         onTap: (e) {
+                //           Get.toNamed(Routes.LIKEDPOSTS);
+                //         },
+                //       ),
+                //       AccountLinkWidget(
+                //         icon: const Icon(
+                //           Icons.logout,
+                //           color: AppColors.primaryColore,
+                //         ),
+                //         text: "تسجيل الخروج",
+                //         onTap: (e) async {
+                //           Get.find<ProfileController>().signout();
+                //         },
+                //       ),
+                //     ],
+                //   ),
+                // ),
+              ],
             )));
   }
 }
@@ -165,37 +181,36 @@ class ProfileDetailsPage extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-         Obx(() => Stack(
-           children: [
-             CircleAvatar(
-              radius: 40,
-              backgroundColor: AppColors.secondaryColor,
-              backgroundImage: controller.profileImagePath.value.isNotEmpty 
-                  ? FileImage(File(controller.profileImagePath.value)) 
-                  : null, // إذا لم يكن هناك صورة، لا تستخدم الخلفية
-              child: controller.profileImagePath.value.isEmpty 
-                  ? const Icon(
-                      Icons.person,
-                      color: Colors.white,
-                      size: 50,
-                    ) 
-                  : null,
-                     ), const SizedBox(height: 16),
-                     
-        Positioned(
-      bottom: 0, // المسافة من الأسفل
-      right: 0, // المسافة من اليمين
-      child: IconButton(
-        onPressed: () {
-          controller.pickImage(); // اختيار الصورة
-        },
-        icon: const Icon(Icons.add_a_photo_rounded),
-        color: Colors.white, // يمكنك تغيير لون الأيقونة
-      ),
-    ),
-  ],
-)),
-       
+        Obx(() => Stack(
+              children: [
+                CircleAvatar(
+                  radius: 40,
+                  backgroundColor: AppColors.secondaryColor,
+                  backgroundImage: controller.profileImagePath.value.isNotEmpty
+                      ? FileImage(File(controller.profileImagePath.value))
+                      : null, // إذا لم يكن هناك صورة، لا تستخدم الخلفية
+                  child: controller.profileImagePath.value.isEmpty
+                      ? const Icon(
+                          Icons.person,
+                          color: Colors.white,
+                          size: 50,
+                        )
+                      : null,
+                ),
+                const SizedBox(height: 16),
+                Positioned(
+                  bottom: 0, // المسافة من الأسفل
+                  right: 0, // المسافة من اليمين
+                  child: IconButton(
+                    onPressed: () {
+                      controller.pickImage(); // اختيار الصورة
+                    },
+                    icon: const Icon(Icons.add_a_photo_rounded),
+                    color: Colors.white, // يمكنك تغيير لون الأيقونة
+                  ),
+                ),
+              ],
+            )),
         const SizedBox(height: 16),
         if (profile != null) ...[
           Text(

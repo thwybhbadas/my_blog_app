@@ -117,42 +117,35 @@ class RootView extends GetView<RootController> {
                                 color: AppColors.primaryColore,
                                 borderRadius: BorderRadius.vertical(
                                   bottom: Radius.circular(10),
-                                )),
+                                ),
+                                ),
                           ),
                     Container(
                       width: size.width * .086 + 40,
                       height: size.width * .086 + 10,
                       decoration: BoxDecoration(
                         color: controller.selectedIndex == index
-                            ? AppColors.primaryColore
+                            ? AppColors.secondaryColor
                             : Colors.transparent,
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(Icons.home_outlined)),
-                  label: 'الصفحة الرئيسية'),
-              BottomNavigationBarItem(
-                  icon: Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: controller.selectedIndex == 1
-                            ? AppColors.secondaryColor
-                            : null,
-                        shape: BoxShape.circle,
+                      child: Center(
+                        child: Icon(
+                          listOfIcons[index],
+                          size: size.width * .086,
+                          color: controller.selectedIndex == index
+                              ? AppColors.primaryColore
+                              : AppColors.primaryColore,
+                        ),
                       ),
-                      child: const Icon(Icons.post_add)),
-                  label: 'منشور جديد'),
-              BottomNavigationBarItem(
-                  icon: Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: controller.selectedIndex == 2
-                            ? AppColors.secondaryColor
-                            : null,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(Icons.person_outline)),
-                  label: 'حسابي'),
-            ],
+                    ),
+                    SizedBox(
+                      height: size.width * .03,
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ),
       ),
